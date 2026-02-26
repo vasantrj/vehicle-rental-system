@@ -7,14 +7,24 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
     exit();
 }
 
+// Approve booking
 if (isset($_GET['approve'])) {
-    $id = $_GET['approve'];
-    mysqli_query($conn, "UPDATE bookings SET status='approved' WHERE id=$id");
+    $booking_id = $_GET['approve'];
+
+    // Get vehicle id for this booking
+    $res = mysqli_query($conn, "SELECT vehicle_id FROM bookings WHERE id=$booking_id");
+    $row = mysqli_fetch_assoc($res);
+    $vehicle_id = $row['vehicle_id'];
+
+    // Update booking + vehicle status
+    mysqli_query($conn, "UPDATE bookings SET status='approved' WHERE id=$booking_id");
+    mysqli_query($conn, "UPDATE vehicles SET status='booked' WHERE id=$vehicle_id");
 }
 
+// Reject booking
 if (isset($_GET['reject'])) {
-    $id = $_GET['reject'];
-    mysqli_query($conn, "UPDATE bookings SET status='rejected' WHERE id=$id");
+    $booking_id = $_GET['reject'];
+    mysqli_query($conn, "UPDATE bookings SET status='rejected' WHERE id=$booking_id");
 }
 
 $result = mysqli_query($conn, "
@@ -53,8 +63,12 @@ $result = mysqli_query($conn, "
         <td><?= $row['end_date'] ?></td>
         <td><?= $row['status'] ?></td>
         <td>
-          <a class="btn btn-success btn-sm" href="?approve=<?= $row['id'] ?>">Approve</a>
-          <a class="btn btn-danger btn-sm" href="?reject=<?= $row['id'] ?>">Reject</a>
+          <?php if($row['status'] === 'pending') { ?>
+            <a class="btn btn-success btn-sm" href="?approve=<?= $row['id'] ?>">Approve</a>
+            <a class="btn btn-danger btn-sm" href="?reject=<?= $row['id'] ?>">Reject</a>
+          <?php } else { ?>
+            <span class="text-muted">No Action</span>
+          <?php } ?>
         </td>
       </tr>
     <?php } ?>

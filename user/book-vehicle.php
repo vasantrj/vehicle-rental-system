@@ -10,6 +10,15 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== "user") {
 $vehicle_id = $_GET['id'];
 $user_email = $_SESSION['email'];
 
+// Check vehicle availability
+$vehRes = mysqli_query($conn, "SELECT status FROM vehicles WHERE id=$vehicle_id");
+$veh = mysqli_fetch_assoc($vehRes);
+
+if ($veh['status'] !== 'available') {
+    die("This vehicle is already booked.");
+}
+
+// Get user id
 $userRes = mysqli_query($conn, "SELECT id FROM users WHERE email='$user_email'");
 $user = mysqli_fetch_assoc($userRes);
 $user_id = $user['id'];
@@ -22,7 +31,7 @@ if (isset($_POST['book'])) {
 
     mysqli_query($conn, "INSERT INTO bookings (user_id, vehicle_id, start_date, end_date, status)
                          VALUES ($user_id, $vehicle_id, '$start', '$end', 'pending')");
-    $msg = "Booking request sent!";
+    $msg = "Booking request sent! Waiting for admin approval.";
 }
 ?>
 
@@ -35,7 +44,7 @@ if (isset($_POST['book'])) {
 <body class="p-4">
   <h2>Book Vehicle</h2>
 
-  <?php if($msg) echo "<p>$msg</p>"; ?>
+  <?php if($msg) echo "<p class='text-success'>$msg</p>"; ?>
 
   <form method="post" class="w-50">
     <label>Start Date</label>
