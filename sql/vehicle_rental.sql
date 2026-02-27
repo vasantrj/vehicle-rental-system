@@ -57,3 +57,5 @@ INSERT INTO vehicles (name, brand, price_per_day, image, status) VALUES
 -- ----------------
 INSERT INTO users (name, email, password, role) VALUES
 ('admin', 'admin@gmail.com', 'admin', 'admin');
+
+ALTER TABLE bookings ADD total_price INT NOT NULL AFTER end_date;

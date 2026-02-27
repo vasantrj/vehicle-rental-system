@@ -5,26 +5,35 @@ include "../config/db.php";
 $error = "";
 
 if (isset($_POST['login'])) {
+
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Admin fixed credentials
-    if ($email === "admin@gmail.com" && $password === "admin") {
-        $_SESSION['role'] = "admin";
-        $_SESSION['email'] = $email;
-        header("Location: ../admin/dashboard.php");
-        exit();
-    }
+    $stmt = mysqli_prepare($conn,
+        "SELECT id, password, role FROM users WHERE email=?"
+    );
 
-    // Normal user login
-    $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-    $result = mysqli_query($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
 
-    if (mysqli_num_rows($result) == 1) {
-        $_SESSION['role'] = "user";
-        $_SESSION['email'] = $email;
-        header("Location: ../user/dashboard.php");
+    $result = mysqli_stmt_get_result($stmt);
+    $user = mysqli_fetch_assoc($result);
+
+    if ($user && password_verify($password, $user['password'])) {
+
+        // 🔄 Secure Session
+        session_regenerate_id(true);
+
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
+
+        if ($user['role'] === "admin") {
+            header("Location: ../admin/dashboard.php");
+        } else {
+            header("Location: ../user/dashboard.php");
+        }
         exit();
+
     } else {
         $error = "Invalid email or password";
     }
@@ -34,30 +43,19 @@ if (isset($_POST['login'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login - Vehicle Rental</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Login</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body class="p-4">
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-4 bg-white p-4 shadow rounded">
-            <h3 class="text-center mb-3">Login</h3>
+<h2>Login</h2>
+<?php if($error) echo "<p class='text-danger'>$error</p>"; ?>
 
-            <?php if($error) echo "<p class='text-danger text-center'>$error</p>"; ?>
-
-            <form method="post">
-                <input class="form-control mb-3" type="email" name="email" placeholder="Email" required>
-                <input class="form-control mb-3" type="password" name="password" placeholder="Password" required>
-                <button class="btn btn-primary w-100" name="login">Login</button>
-            </form>
-
-            <p class="text-center mt-3">
-                Don't have account? <a href="register.php">Register</a>
-            </p>
-        </div>
-    </div>
-</div>
+<form method="post" class="w-50">
+<input class="form-control mb-2" type="email" name="email" placeholder="Email" required>
+<input class="form-control mb-2" type="password" name="password" placeholder="Password" required>
+<button class="btn btn-primary" name="login">Login</button>
+</form>
 
 </body>
 </html>
