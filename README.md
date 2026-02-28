@@ -51,42 +51,14 @@ This project implements real-world backend logic, booking lifecycle management, 
 
 ## 📸 Screenshots
 
-### Admin Dashboard
+<!-- ### Admin Dashboard
 ![Admin Dashboard](Screenshots/admin-dashboard.png)
 
 ### Vehicles Page
 ![Vehicles](Screenshots/vehicles.png)
 
 ### Invoice PDF
-![Invoice](Screenshots/invoice.png)
-
----
-
-## 🏗 Database Structure
-
-### Users Table
-- id
-- name
-- email (unique)
-- password (hashed)
-- role (admin/user)
-
-### Vehicles Table
-- id
-- name
-- brand
-- price_per_day
-- image
-- status
-
-### Bookings Table
-- id
-- user_id
-- vehicle_id
-- start_date
-- end_date
-- total_price
-- status
+![Invoice](Screenshots/invoice.png) -->
 
 ---
 
@@ -102,16 +74,13 @@ This project implements real-world backend logic, booking lifecycle management, 
 
 4. Import SQL file into phpMyAdmin
 
-5. Open:
-
-http://localhost/vehicle-rental-system
+5. Open: http://localhost/vehicle-rental-system
 
 ---
 
 ## 👤 Admin Credentials
 
 Register with:
-
 Email: admin@gmail.com  
 Password: admin  
 
@@ -129,16 +98,7 @@ System automatically assigns admin role.
 
 ---
 
-## 🎯 Project Level
-
-✔ Placement Ready  
-✔ Industry Concepts Applied  
-✔ Secure Authentication  
-✔ Advanced Backend Logic  
-✔ Professional Analytics  
-
----
-
 ## 👨‍💻 Author
 
 **Vasant Joshi**
+5th sem CSE Student
