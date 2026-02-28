@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../config/db.php";
+require "../mail_helper.php";
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
     header("Location: ../auth/login.php");
@@ -11,22 +12,40 @@ if (isset($_GET['approve'])) {
 
     $booking_id = intval($_GET['approve']);
 
-    $stmt = mysqli_prepare($conn,
-        "UPDATE bookings SET status='approved' WHERE id=?"
-    );
+    $stmt = mysqli_prepare($conn, "
+        SELECT b.start_date, b.end_date, b.total_price,
+               u.email, u.name,
+               v.name AS vehicle_name
+        FROM bookings b
+        JOIN users u ON b.user_id = u.id
+        JOIN vehicles v ON b.vehicle_id = v.id
+        WHERE b.id=?
+    ");
+
     mysqli_stmt_bind_param($stmt, "i", $booking_id);
     mysqli_stmt_execute($stmt);
-}
+    $result = mysqli_stmt_get_result($stmt);
+    $data = mysqli_fetch_assoc($result);
 
-if (isset($_GET['reject'])) {
+    if ($data) {
 
-    $booking_id = intval($_GET['reject']);
+        // Approve booking
+        $update_stmt = mysqli_prepare($conn,
+            "UPDATE bookings SET status='approved' WHERE id=?"
+        );
+        mysqli_stmt_bind_param($update_stmt, "i", $booking_id);
+        mysqli_stmt_execute($update_stmt);
 
-    $stmt = mysqli_prepare($conn,
-        "UPDATE bookings SET status='rejected' WHERE id=?"
-    );
-    mysqli_stmt_bind_param($stmt, "i", $booking_id);
-    mysqli_stmt_execute($stmt);
+        // Send Email
+        sendBookingEmail(
+            $data['email'],
+            $data['name'],
+            $data['vehicle_name'],
+            $data['start_date'],
+            $data['end_date'],
+            $data['total_price']
+        );
+    }
 }
 
 $result = mysqli_query($conn, "
@@ -41,7 +60,7 @@ $result = mysqli_query($conn, "
 <!DOCTYPE html>
 <html>
 <head>
-<title>All Bookings</title>
+<title>Bookings</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="p-4">
@@ -70,7 +89,6 @@ $result = mysqli_query($conn, "
 <td>
 <?php if($row['status']=='pending') { ?>
 <a class="btn btn-success btn-sm" href="?approve=<?= $row['id'] ?>">Approve</a>
-<a class="btn btn-danger btn-sm" href="?reject=<?= $row['id'] ?>">Reject</a>
 <?php } else { echo "No Action"; } ?>
 </td>
 </tr>

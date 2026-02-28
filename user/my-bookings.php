@@ -10,56 +10,54 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== "user") {
 $user_id = $_SESSION['user_id'];
 
 /* --------------------------
-   CANCEL BOOKING (SECURED)
+   FILTER VALUES
 -------------------------- */
-if (isset($_GET['cancel'])) {
-
-    $booking_id = intval($_GET['cancel']);
-
-    // Check booking belongs to user and is pending
-    $stmt = mysqli_prepare($conn,
-        "SELECT vehicle_id FROM bookings 
-         WHERE id=? AND user_id=? AND status='pending'"
-    );
-
-    mysqli_stmt_bind_param($stmt, "ii", $booking_id, $user_id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    $booking = mysqli_fetch_assoc($result);
-
-    if ($booking) {
-
-        // Update booking status
-        $update_stmt = mysqli_prepare($conn,
-            "UPDATE bookings SET status='rejected' WHERE id=?"
-        );
-
-        mysqli_stmt_bind_param($update_stmt, "i", $booking_id);
-        mysqli_stmt_execute($update_stmt);
-
-        // Make vehicle available again
-        $vehicle_stmt = mysqli_prepare($conn,
-            "UPDATE vehicles SET status='available' WHERE id=?"
-        );
-
-        mysqli_stmt_bind_param($vehicle_stmt, "i", $booking['vehicle_id']);
-        mysqli_stmt_execute($vehicle_stmt);
-    }
-}
+$status = $_GET['status'] ?? '';
+$from_date = $_GET['from_date'] ?? '';
+$to_date = $_GET['to_date'] ?? '';
+$vehicle_name = $_GET['vehicle_name'] ?? '';
 
 /* --------------------------
-   FETCH BOOKINGS (SECURED)
+   BUILD DYNAMIC QUERY
 -------------------------- */
-$stmt = mysqli_prepare($conn, "
-    SELECT b.id, v.name AS vehicle_name, 
-           b.start_date, b.end_date, 
+$sql = "
+    SELECT b.id, v.name AS vehicle_name,
+           b.start_date, b.end_date,
            b.total_price, b.status
     FROM bookings b
     JOIN vehicles v ON b.vehicle_id = v.id
     WHERE b.user_id = ?
-");
+";
 
-mysqli_stmt_bind_param($stmt, "i", $user_id);
+$params = [$user_id];
+$types = "i";
+
+if (!empty($status)) {
+    $sql .= " AND b.status = ?";
+    $params[] = $status;
+    $types .= "s";
+}
+
+if (!empty($from_date)) {
+    $sql .= " AND b.start_date >= ?";
+    $params[] = $from_date;
+    $types .= "s";
+}
+
+if (!empty($to_date)) {
+    $sql .= " AND b.end_date <= ?";
+    $params[] = $to_date;
+    $types .= "s";
+}
+
+if (!empty($vehicle_name)) {
+    $sql .= " AND v.name LIKE ?";
+    $params[] = "%$vehicle_name%";
+    $types .= "s";
+}
+
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, $types, ...$params);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 ?>
@@ -74,6 +72,42 @@ $result = mysqli_stmt_get_result($stmt);
 
 <h2>My Bookings</h2>
 
+<!-- FILTER FORM -->
+<form method="get" class="row g-3 mb-4">
+
+<div class="col-md-3">
+<label>Status</label>
+<select name="status" class="form-control">
+<option value="">All</option>
+<option value="approved" <?= ($status=='approved')?'selected':'' ?>>Approved</option>
+<option value="pending" <?= ($status=='pending')?'selected':'' ?>>Pending</option>
+<option value="rejected" <?= ($status=='rejected')?'selected':'' ?>>Rejected</option>
+</select>
+</div>
+
+<div class="col-md-3">
+<label>From Date</label>
+<input type="date" name="from_date" value="<?= htmlspecialchars($from_date) ?>" class="form-control">
+</div>
+
+<div class="col-md-3">
+<label>To Date</label>
+<input type="date" name="to_date" value="<?= htmlspecialchars($to_date) ?>" class="form-control">
+</div>
+
+<div class="col-md-3">
+<label>Vehicle Name</label>
+<input type="text" name="vehicle_name" value="<?= htmlspecialchars($vehicle_name) ?>" class="form-control">
+</div>
+
+<div class="col-md-12">
+<button class="btn btn-primary">Apply Filters</button>
+<a href="my-bookings.php" class="btn btn-secondary">Reset</a>
+</div>
+
+</form>
+
+<!-- BOOKINGS TABLE -->
 <table class="table table-bordered">
 <tr>
 <th>Vehicle</th>
@@ -96,17 +130,10 @@ $result = mysqli_stmt_get_result($stmt);
 <?php if($row['status'] == 'approved') { ?>
     <a class="btn btn-primary btn-sm"
        href="invoice.php?id=<?= $row['id'] ?>">
-       Download Invoice
+       Invoice
     </a>
-
-<?php } elseif($row['status'] == 'pending') { ?>
-    <a class="btn btn-danger btn-sm"
-       href="?cancel=<?= $row['id'] ?>">
-       Cancel
-    </a>
-
 <?php } else { ?>
-    No Action
+    -
 <?php } ?>
 
 </td>
