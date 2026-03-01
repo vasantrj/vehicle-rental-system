@@ -6,70 +6,70 @@ body {
     margin: 0;
     padding: 0;
 }
- 
+     
 h2, h3, h4 {
     font-weight: 600;
 }
- 
+       
 /* ===== NAVBAR ===== */
- 
+         
 .navbar-custom {
     background: linear-gradient(90deg, #1e3c72, #2a5298);
 }
- 
+      
 .navbar-custom .navbar-brand,
 .navbar-custom .nav-link {
     color: #fff !important;
     font-weight: 500;
 }
- 
+     
 .navbar-custom .nav-link:hover {
     color: #ffdd57 !important;
 }
  
 /* ===== CARD STYLE ===== */
- 
+     
 .card-custom {
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     border: none;
 }
- 
+     
 /* ===== BUTTONS ===== */
  
 .btn-primary {
     background-color: #2a5298;
     border: none;
 }
-  
+      
 .btn-primary:hover {
     background-color: #1e3c72;
 }
- 
+      
 .btn-success {
     border-radius: 8px;
 }
- 
+      
 .btn-danger {
     border-radius: 8px;
 }
  
 /* ===== TABLE ===== */
- 
+      
 .table {
-    background: white;
+    background: rgb(193, 193, 193);
     border-radius: 10px;
     overflow: hidden;
 }
  
 /* ===== ALERT ===== */
- 
+     
 .alert {
     border-radius: 10px;
 }
- 
+       
 /* ===== PAYMENT BOX ===== */
- 
+       
 .payment-box {
     max-width: 450px;
     margin: auto;
@@ -78,9 +78,9 @@ h2, h3, h4 {
     background: #ffffff;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
- 
+       
 /* ===== FOOTER ===== */
- 
+       
 .footer {
     text-align: center;
     padding: 15px;
@@ -88,3 +88,4 @@ h2, h3, h4 {
     color: white;
     margin-top: 40px;
 }
+
