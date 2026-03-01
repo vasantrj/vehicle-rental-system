@@ -59,3 +59,6 @@ INSERT INTO users (name, email, password, role) VALUES
 ('admin', 'admin@gmail.com', 'admin', 'admin');
 
 ALTER TABLE bookings ADD total_price INT NOT NULL AFTER end_date;
+
+ALTER TABLE bookings 
+ADD payment_status ENUM('pending','paid','failed') DEFAULT 'pending';

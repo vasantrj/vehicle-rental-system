@@ -1,26 +1,90 @@
+/* ===== GLOBAL THEME ===== */
+
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  background-color: #f8f9fa;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
 }
 
-.hero {
-  padding-top: 90px; /* space for fixed navbar */
+h2, h3, h4 {
+    font-weight: 600;
 }
 
-.hero h1 {
-  color: #212529;
+/* ===== NAVBAR ===== */
+
+.navbar-custom {
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
 }
 
-.hero-img {
-  max-width: 90%;
-  border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: #fff !important;
+    font-weight: 500;
 }
 
-.navbar-brand {
-  letter-spacing: 1px;
+.navbar-custom .nav-link:hover {
+    color: #ffdd57 !important;
 }
+
+/* ===== CARD STYLE ===== */
+
+.card-custom {
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border: none;
+}
+
+/* ===== BUTTONS ===== */
 
 .btn-primary {
-  box-shadow: 0 6px 14px rgba(13,110,253,0.25);
+    background-color: #2a5298;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #1e3c72;
+}
+
+.btn-success {
+    border-radius: 8px;
+}
+
+.btn-danger {
+    border-radius: 8px;
+}
+
+/* ===== TABLE ===== */
+
+.table {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* ===== ALERT ===== */
+
+.alert {
+    border-radius: 10px;
+}
+
+/* ===== PAYMENT BOX ===== */
+
+.payment-box {
+    max-width: 450px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    background: #ffffff;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* ===== FOOTER ===== */
+
+.footer {
+    text-align: center;
+    padding: 15px;
+    background: #2a5298;
+    color: white;
+    margin-top: 40px;
 }

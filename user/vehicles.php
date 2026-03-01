@@ -24,10 +24,12 @@ if (isset($_GET['search'])) {
 <html>
 <head>
 <title>Available Vehicles</title>
+<link rel="stylesheet" href="../assets/style.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="p-4">
-
+<?php include "../includes/navbar.php"; ?>
+<div class="container mt-4">
 <h2>Available Vehicles</h2>
 
 <form method="get" class="mb-3">
@@ -53,6 +55,7 @@ if (isset($_GET['search'])) {
     </div>
 <?php } ?>
 </div>
-
+</div>
+<?php include "../includes/footer.php"; ?>
 </body>
 </html>

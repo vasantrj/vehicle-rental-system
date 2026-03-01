@@ -46,11 +46,13 @@ $monthlyRevenue = mysqli_query($conn,
 <html>
 <head>
 <title>Admin Dashboard</title>
+<link rel="stylesheet" href="../assets/style.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="p-4">
-
+<?php include "../includes/navbar.php"; ?>
+<div class="container mt-4">
 <h2>Advanced Admin Dashboard</h2>
 
 <!-- ACTION BUTTONS -->
@@ -104,6 +106,7 @@ new Chart(ctx, {
     }
 });
 </script>
-
+</div>
+<?php include "../includes/footer.php"; ?>
 </body>
 </html>

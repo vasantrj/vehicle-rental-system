@@ -1,3 +1,3 @@
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<div class="footer">
+    © <?= date("Y") ?> Vehicle Rental System | Developed by Vasant Joshi
+</div>

@@ -61,10 +61,12 @@ $result = mysqli_query($conn, "
 <html>
 <head>
 <title>Bookings</title>
+<link rel="stylesheet" href="../assets/style.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="p-4">
-
+<?php include "../includes/navbar.php"; ?>
+<div class="container mt-4">
 <h2>All Bookings</h2>
 
 <table class="table table-bordered">
@@ -95,6 +97,7 @@ $result = mysqli_query($conn, "
 <?php } ?>
 
 </table>
-
+</div>
+<?php include "../includes/footer.php"; ?>
 </body>
 </html>
