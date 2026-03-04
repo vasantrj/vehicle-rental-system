@@ -1,72 +1,90 @@
 <?php
+session_start();
 include "../config/db.php";
 
-$message = "";
+$msg="";
 
-if (isset($_POST['register'])) {
+if($_SERVER["REQUEST_METHOD"]=="POST"){
 
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+$name=$_POST['name'];
+$email=$_POST['email'];
+$password=password_hash($_POST['password'],PASSWORD_DEFAULT);
 
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+$role="user";
 
-    if ($email === "admin@gmail.com" && $password === "admin") {
-        $role = "admin";
-    } else {
-        $role = "user";
-    }
+if($email=="admin@gmail.com"){
+$role="admin";
+}
 
-    // 🔎 Check if email already exists
-    $check_stmt = mysqli_prepare($conn,
-        "SELECT id FROM users WHERE email=?"
-    );
+$stmt=mysqli_prepare($conn,"INSERT INTO users(name,email,password,role) VALUES(?,?,?,?)");
+mysqli_stmt_bind_param($stmt,"ssss",$name,$email,$password,$role);
 
-    mysqli_stmt_bind_param($check_stmt, "s", $email);
-    mysqli_stmt_execute($check_stmt);
-    $result = mysqli_stmt_get_result($check_stmt);
+if(mysqli_stmt_execute($stmt)){
+header("Location: login.php");
+exit();
+}else{
+$msg="Registration failed.";
+}
 
-    if (mysqli_num_rows($result) > 0) {
-
-        $message = "Email already registered. Please login.";
-
-    } else {
-
-        $stmt = mysqli_prepare($conn,
-            "INSERT INTO users (name, email, password, role)
-             VALUES (?, ?, ?, ?)"
-        );
-
-        mysqli_stmt_bind_param($stmt, "ssss",
-            $name, $email, $hashed_password, $role
-        );
-
-        if (mysqli_stmt_execute($stmt)) {
-            $message = "Registration successful! Please login.";
-        } else {
-            $message = "Registration failed!";
-        }
-    }
 }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Register</title>
+
+<link rel="stylesheet" href="../assets/style.css">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
-<body class="p-4">
 
-<h2>Register</h2>
-<?php if($message) echo "<p class='text-danger'>$message</p>"; ?>
+<body>
 
-<form method="post" class="w-50">
-<input class="form-control mb-2" name="name" placeholder="Full Name" required>
-<input class="form-control mb-2" type="email" name="email" placeholder="Email" required>
-<input class="form-control mb-2" type="password" name="password" placeholder="Password" required>
-<button class="btn btn-primary" name="register">Register</button>
+<div class="auth-wrapper">
+
+<div class="auth-card">
+
+<h3 class="text-center mb-4">Create Account</h3>
+
+<?php if($msg) echo "<p class='text-danger'>$msg</p>"; ?>
+
+<form method="post">
+
+<div class="mb-3">
+<label>Name</label>
+<input type="text" name="name" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Email</label>
+<input type="email" name="email" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Password</label>
+<input type="password" name="password" class="form-control" required>
+</div>
+
+<button class="btn btn-primary w-100">
+Register
+</button>
+
+<p class="text-center mt-3">
+
+Already have an account?
+
+<a href="login.php">Login</a>
+
+</p>
+
 </form>
+
+</div>
+
+</div>
 
 </body>
 </html>

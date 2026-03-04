@@ -76,9 +76,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Book Vehicle</title>
+
+<link rel="stylesheet" href="../assets/style.css">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css"><script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 </head>
 <body class="p-4">
 <?php include "../includes/navbar.php"; ?>
@@ -102,22 +110,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
 <script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
 let disabledRanges = <?= json_encode($disabled_ranges); ?>;
 
-flatpickr("#start_date", {
-    dateFormat: "Y-m-d",
-    minDate: "today",
-    disable: disabledRanges,
-    onChange: function(selectedDates, dateStr) {
-        endPicker.set("minDate", dateStr);
-    }
+const startPicker = flatpickr("#start_date",{
+
+dateFormat:"Y-m-d",
+
+minDate:"today",
+
+disable:disabledRanges,
+
+onChange:function(selectedDates,dateStr){
+
+endPicker.set("minDate",dateStr);
+
+}
+
 });
 
-let endPicker = flatpickr("#end_date", {
-    dateFormat: "Y-m-d",
-    minDate: "today",
-    disable: disabledRanges
+const endPicker = flatpickr("#end_date",{
+
+dateFormat:"Y-m-d",
+
+minDate:"today",
+
+disable:disabledRanges
+
 });
+
+});
+
 </script>
 </div>
 <?php include "../includes/footer.php"; ?>

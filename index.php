@@ -1,65 +1,128 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Vehicle Rental Management System</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Vehicle Rental System</title>
 
-  <!-- Your CSS -->
-  <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+.hero{
+background:linear-gradient(120deg,#007bff,#0056b3);
+color:white;
+padding:100px 0;
+text-align:center;
+}
+
+.hero h1{
+font-size:48px;
+font-weight:600;
+}
+
+.feature-box{
+padding:25px;
+border-radius:10px;
+background:white;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.vehicle-card{
+border:none;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+border-radius:10px;
+}
+
+</style>
+
 </head>
+
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="#">VRMS</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Vehicles</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Drivers</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-      </ul>
-      <div class="d-flex gap-2">
-        <a class="btn btn-outline-primary" href="auth/login.php">Login</a>
-        <a class="btn btn-primary" href="auth/register.php">Sign Up</a>
-      </div>
-    </div>
-  </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+
+<a class="navbar-brand" href="#">🚗 Vehicle Rental</a>
+
+<div class="ms-auto">
+
+<a href="auth/login.php" class="btn btn-light me-2">
+Login
+</a>
+
+<a href="auth/register.php" class="btn btn-warning">
+Register
+</a>
+
+</div>
+
+</div>
 </nav>
 
-<!-- Hero -->
 <section class="hero">
-  <div class="container">
-    <div class="row align-items-center min-vh-100">
-      
-      <div class="col-md-6">
-        <h1 class="display-5 fw-bold">Vehicle Rental Management System</h1>
-        <p class="text-muted mt-3">
-          Manage vehicles, bookings, and customers in one simple platform.
-        </p>
-        <div class="mt-4">
-          <a href="auth/login.php" class="btn btn-primary btn-lg me-2">Book a Vehicle</a>
-          <a href="#" class="btn btn-outline-secondary btn-lg">Explore Vehicles</a>
-        </div>
-      </div>
 
-      <div class="col-md-6 text-center">
-        <img src="assets/images/hero-car.png" alt="Vehicle" class="img-fluid hero-img">
-      </div>
+<div class="container">
 
-    </div>
-  </div>
+<h1>Book Vehicles Easily</h1>
+
+<p class="lead">
+Smart vehicle rental platform with secure payments and instant booking.
+</p>
+
+<a href="auth/register.php" class="btn btn-light btn-lg mt-3">
+Get Started
+</a>
+
+</div>
+
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/main.js"></script>
+<section class="py-5">
+
+<div class="container">
+
+<h2 class="text-center mb-4">Platform Features</h2>
+
+<div class="row">
+
+<div class="col-md-4">
+<div class="feature-box text-center">
+<h4>📅 Smart Booking</h4>
+<p>Choose dates easily with availability calendar.</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="feature-box text-center">
+<h4>💳 Secure Payments</h4>
+<p>Pay securely with Razorpay payment gateway.</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="feature-box text-center">
+<h4>🧾 Instant Invoice</h4>
+<p>Download professional invoice after booking.</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="bg-dark text-white text-center p-3">
+
+Vehicle Rental System © <?= date("Y") ?>
+
+</footer>
+
 </body>
 </html>

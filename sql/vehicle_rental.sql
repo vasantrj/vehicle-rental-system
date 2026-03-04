@@ -62,3 +62,7 @@ ALTER TABLE bookings ADD total_price INT NOT NULL AFTER end_date;
 
 ALTER TABLE bookings 
 ADD payment_status ENUM('pending','paid','failed') DEFAULT 'pending';
+
+ALTER TABLE bookings
+ADD payment_id VARCHAR(100),
+ADD payment_method VARCHAR(50);

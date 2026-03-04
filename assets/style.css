@@ -1,91 +1,105 @@
-/* ===== GLOBAL THEME ===== */
- 
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f4f6f9;
-    margin: 0;
-    padding: 0;
-}
-     
-h2, h3, h4 {
-    font-weight: 600;
-}
-       
-/* ===== NAVBAR ===== */
-         
-.navbar-custom {
-    background: linear-gradient(90deg, #1e3c72, #2a5298);
-}
-      
-.navbar-custom .navbar-brand,
-.navbar-custom .nav-link {
-    color: #fff !important;
-    font-weight: 500;
-}
-     
-.navbar-custom .nav-link:hover {
-    color: #ffdd57 !important;
-}
- 
-/* ===== CARD STYLE ===== */
-     
-.card-custom {
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    border: none;
-}
-     
-/* ===== BUTTONS ===== */
- 
-.btn-primary {
-    background-color: #2a5298;
-    border: none;
-}
-      
-.btn-primary:hover {
-    background-color: #1e3c72;
-}
-      
-.btn-success {
-    border-radius: 8px;
-}
-      
-.btn-danger {
-    border-radius: 8px;
-}
- 
-/* ===== TABLE ===== */
-      
-.table {
-    background: rgb(193, 193, 193);
-    border-radius: 10px;
-    overflow: hidden;
-}
- 
-/* ===== ALERT ===== */
-     
-.alert {
-    border-radius: 10px;
-}
-       
-/* ===== PAYMENT BOX ===== */
-       
-.payment-box {
-    max-width: 450px;
-    margin: auto;
-    padding: 30px;
-    border-radius: 15px;
-    background: #ffffff;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-       
-/* ===== FOOTER ===== */
-       
-.footer {
-    text-align: center;
-    padding: 15px;
-    background: #2a5298;
-    color: white;
-    margin-top: 40px;
+/* GLOBAL */
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:#f3f4f6;
+color:#1f2937;
+margin:0;
 }
 
+/* NAVBAR */
+
+.navbar{
+background:#1f2937;
+}
+
+.navbar-brand{
+font-weight:600;
+color:white !important;
+}
+
+.nav-link{
+color:white !important;
+}
+
+/* HERO */
+
+.hero{
+background:linear-gradient(120deg,#eb7725,#eb7725);
+color:white;
+padding:120px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:48px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:20px;
+margin-bottom:30px;
+}
+
+/* FEATURES */
+
+.feature-box{
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);
+transition:0.2s;
+}
+
+.feature-box:hover{
+transform:translateY(-5px);
+}
+
+/* AUTH PAGES */
+
+.auth-wrapper{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+padding:20px;
+}
+
+.auth-card{
+width:100%;
+max-width:420px;
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* BUTTON */
+
+.btn-primary{
+background:#e7853f;
+border:none;
+}
+
+.btn-primary:hover{
+background:#dd6713;
+}
+
+/* TABLE */
+
+table{
+background:white;
+border-radius:8px;
+overflow:hidden;
+}
+
+/* DASHBOARD CARDS */
+
+.dashboard-card{
+padding:25px;
+border-radius:10px;
+background:white;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);
+text-align:center;
+}
