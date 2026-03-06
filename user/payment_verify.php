@@ -41,9 +41,9 @@ $update=mysqli_prepare($conn,"
 UPDATE bookings
 SET status='approved',
 payment_status='paid',
-payment_id=?,
+payment_id='$payment_id',
 payment_method='Razorpay'
-WHERE id=?
+WHERE id=$booking_id
 ");
 
 mysqli_stmt_bind_param($update,"si",$payment_id,$booking_id);

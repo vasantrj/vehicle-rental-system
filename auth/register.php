@@ -1,32 +1,36 @@
 <?php
+
 session_start();
 include "../config/db.php";
 
-$msg="";
+$error="";
+$success="";
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 
 $name=$_POST['name'];
 $email=$_POST['email'];
-$password=password_hash($_POST['password'],PASSWORD_DEFAULT);
+$password=$_POST['password'];
 
-$role="user";
+$hashed=password_hash($password,PASSWORD_DEFAULT);
 
-if($email=="admin@gmail.com"){
-$role="admin";
+try{
+
+$stmt=mysqli_prepare($conn,"INSERT INTO users(name,email,password) VALUES(?,?,?)");
+mysqli_stmt_bind_param($stmt,"sss",$name,$email,$hashed);
+
+mysqli_stmt_execute($stmt);
+
+$success="Registration successful. You can login now.";
+
+}catch(mysqli_sql_exception $e){
+
+$error="Email already registered.";
+
 }
 
-$stmt=mysqli_prepare($conn,"INSERT INTO users(name,email,password,role) VALUES(?,?,?,?)");
-mysqli_stmt_bind_param($stmt,"ssss",$name,$email,$password,$role);
-
-if(mysqli_stmt_execute($stmt)){
-header("Location: login.php");
-exit();
-}else{
-$msg="Registration failed.";
 }
 
-}
 ?>
 
 <!DOCTYPE html>
@@ -39,50 +43,63 @@ $msg="Registration failed.";
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+<style>
+
+body{
+background:linear-gradient(120deg,#ff7a18,#ff4e00);
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.card{
+width:420px;
+padding:35px;
+border-radius:14px;
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+</style>
+
 </head>
 
 <body>
 
-<div class="auth-wrapper">
+<div class="card">
 
-<div class="auth-card">
+<h3 class="mb-4 text-center">Register</h3>
 
-<h3 class="text-center mb-4">Create Account</h3>
+<?php if($error!=""){ ?>
+<div class="alert alert-danger"><?= $error ?></div>
+<?php } ?>
 
-<?php if($msg) echo "<p class='text-danger'>$msg</p>"; ?>
+<?php if($success!=""){ ?>
+<div class="alert alert-success"><?= $success ?></div>
+<?php } ?>
 
-<form method="post">
+<form method="POST">
 
-<div class="mb-3">
-<label>Name</label>
-<input type="text" name="name" class="form-control" required>
-</div>
+<input type="text" name="name" class="form-control mb-3" placeholder="Name" required>
 
-<div class="mb-3">
-<label>Email</label>
-<input type="email" name="email" class="form-control" required>
-</div>
+<input type="email" name="email" class="form-control mb-3" placeholder="Email" required>
 
-<div class="mb-3">
-<label>Password</label>
-<input type="password" name="password" class="form-control" required>
-</div>
+<input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
 
 <button class="btn btn-primary w-100">
+
 Register
+
 </button>
-
-<p class="text-center mt-3">
-
-Already have an account?
-
-<a href="login.php">Login</a>
-
-</p>
 
 </form>
 
-</div>
+<p class="text-center mt-3">
+
+Already have an account?  
+<a href="login.php">Login</a>
+
+</p>
 
 </div>
 

@@ -1,68 +1,61 @@
--- ================================
--- Vehicle Rental Management System
--- Complete Database SQL
--- ================================
+-- ==========================================
+-- Vehicle Rental Management System Database
+-- ==========================================
 
-CREATE DATABASE IF NOT EXISTS vehicle_rental;
+CREATE DATABASE vehicle_rental;
 USE vehicle_rental;
 
--- ----------------
--- Users Table
--- ----------------
-DROP TABLE IF EXISTS users;
+-- USERS
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-    role ENUM('admin','user') DEFAULT 'user'
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(100) UNIQUE NOT NULL,
+password VARCHAR(255) NOT NULL,
+phone VARCHAR(20),
+role ENUM('admin','user') DEFAULT 'user'
 );
 
--- ----------------
--- Vehicles Table
--- ----------------
-DROP TABLE IF EXISTS vehicles;
+-- VEHICLES
 CREATE TABLE vehicles (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    brand VARCHAR(100) NOT NULL,
-    price_per_day INT NOT NULL,
-    image VARCHAR(255),
-    status ENUM('available','booked') DEFAULT 'available'
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+brand VARCHAR(100) NOT NULL,
+price_per_day INT NOT NULL,
+image VARCHAR(255),
+status ENUM('available','booked') DEFAULT 'available'
 );
 
--- ----------------
--- Bookings Table
--- ----------------
-DROP TABLE IF EXISTS bookings;
+-- BOOKINGS
 CREATE TABLE bookings (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    vehicle_id INT NOT NULL,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
-    status ENUM('pending','approved','rejected') DEFAULT 'pending'
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+vehicle_id INT,
+start_date DATE,
+end_date DATE,
+total_price INT,
+status ENUM('pending','approved','rejected') DEFAULT 'pending',
+payment_status ENUM('pending','paid','failed') DEFAULT 'pending',
+payment_id VARCHAR(100),
+payment_method VARCHAR(50)
 );
 
--- ----------------
--- Optional: Sample Vehicles (for testing UI)
--- ----------------
-INSERT INTO vehicles (name, brand, price_per_day, image, status) VALUES
-('Swift', 'Maruti', 1200, 'swift.jpg', 'available'),
-('Creta', 'Hyundai', 2000, 'creta.jpg', 'available'),
-('Royal Enfield', 'RE', 800, 're.jpg', 'available');
+-- FEEDBACK
+CREATE TABLE feedback (
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+name VARCHAR(100),
+email VARCHAR(100),
+message TEXT,
+rating INT,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
--- ----------------
--- Optional: Demo Admin (not required since admin login is hardcoded)
--- ----------------
-INSERT INTO users (name, email, password, role) VALUES
-('admin', 'admin@gmail.com', 'admin', 'admin');
+-- DEMO VEHICLES
+INSERT INTO vehicles (name,brand,price_per_day,image,status) VALUES
+('Swift','Maruti',1200,'swift.jpg','available'),
+('Creta','Hyundai',2000,'creta.jpg','available'),
+('Royal Enfield','RE',800,'re.jpg','available');
 
-ALTER TABLE bookings ADD total_price INT NOT NULL AFTER end_date;
-
-ALTER TABLE bookings 
-ADD payment_status ENUM('pending','paid','failed') DEFAULT 'pending';
-
-ALTER TABLE bookings
-ADD payment_id VARCHAR(100),
-ADD payment_method VARCHAR(50);
+-- ADMIN ACCOUNT
+INSERT INTO users (name,email,password,phone,role) VALUES
+('Admin','admin@gmail.com','admin','9999999999','admin');

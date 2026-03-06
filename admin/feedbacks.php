@@ -3,13 +3,7 @@
 session_start();
 include "../config/db.php";
 
-$result=mysqli_query($conn,"
-SELECT b.*,u.name as user,v.name as vehicle
-FROM bookings b
-JOIN users u ON b.user_id=u.id
-JOIN vehicles v ON b.vehicle_id=v.id
-ORDER BY b.id DESC
-");
+$result=mysqli_query($conn,"SELECT * FROM feedback ORDER BY created_at DESC");
 
 ?>
 
@@ -19,7 +13,7 @@ ORDER BY b.id DESC
 <html>
 <head>
 
-<title>Manage Bookings</title>
+<title>User Feedback</title>
 
 <link rel="stylesheet" href="../assets/style.css">
 
@@ -31,18 +25,17 @@ ORDER BY b.id DESC
 
 <div class="container mt-5">
 
-<h3>Bookings</h3>
+<h3>User Feedback</h3>
 
 <table class="table table-bordered mt-3">
 
 <tr>
 
 <th>User</th>
-<th>Vehicle</th>
-<th>From</th>
-<th>To</th>
-<th>Total</th>
-<th>Status</th>
+<th>Email</th>
+<th>Rating</th>
+<th>Message</th>
+<th>Date</th>
 
 </tr>
 
@@ -50,12 +43,32 @@ ORDER BY b.id DESC
 
 <tr>
 
-<td><?= $row['user'] ?></td>
-<td><?= $row['vehicle'] ?></td>
-<td><?= $row['start_date'] ?></td>
-<td><?= $row['end_date'] ?></td>
-<td>₹<?= $row['total_price'] ?></td>
-<td><?= $row['status'] ?></td>
+<td><?= $row['name'] ?></td>
+<td><?= $row['email'] ?></td>
+
+<td>
+
+<?php
+for($i=1;$i<=5;$i++){
+
+if($i <= $row['rating']){
+
+echo "⭐";
+
+}else{
+
+echo "☆";
+
+}
+
+}
+?>
+
+</td>
+
+<td><?= $row['message'] ?></td>
+
+<td><?= $row['created_at'] ?></td>
 
 </tr>
 
