@@ -154,3 +154,6 @@ System automatically assigns admin role.
 
 Full Stack Developer | AIML Enthusiast
 
+⭐ If you like this project
+
+Give this repository a star ⭐ on GitHub.
