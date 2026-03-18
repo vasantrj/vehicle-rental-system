@@ -51,60 +51,6 @@ $days=(new DateTime($data['start_date']))
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<style>
-
-body{
-background:#f4f6f9;
-font-family:Segoe UI;
-}
-
-.invoice-box{
-background:white;
-padding:40px;
-border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-max-width:900px;
-margin:auto;
-}
-
-.invoice-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:30px;
-}
-
-.invoice-title{
-font-size:28px;
-font-weight:600;
-}
-
-.company-info{
-text-align:right;
-}
-
-.table th{
-background:#f8f9fa;
-}
-
-.total-row{
-font-size:18px;
-font-weight:600;
-}
-
-.company-name{
-font-size:22px;
-font-weight:600;
-}
-
-.footer-note{
-margin-top:30px;
-font-size:14px;
-color:#777;
-}
-
-</style>
-
 </head>
 
 <body class="p-5">

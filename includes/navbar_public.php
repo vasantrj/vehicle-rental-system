@@ -13,7 +13,7 @@ Home
 </a>
 
 <a href="/vehicle-rental-system/auth/login.php" class="btn btn-light ms-3">
-Login
+Login 
 </a>
 
 <a href="/vehicle-rental-system/auth/register.php" class="btn btn-primary ms-2">

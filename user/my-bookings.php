@@ -32,42 +32,6 @@ ORDER BY b.id DESC
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<style>
-
-.header{
-background:linear-gradient(120deg,#ff7a18,#ff4e00);
-padding:30px;
-color:white;
-border-radius:12px;
-margin-top:20px;
-}
-
-.booking-card{
-border:none;
-border-radius:15px;
-box-shadow:0 8px 25px rgba(0,0,0,0.1);
-padding:25px;
-transition:0.3s;
-}
-
-.booking-card:hover{
-transform:translateY(-5px);
-}
-
-.badge-approved{
-background:#16a34a;
-}
-
-.badge-pending{
-background:#f59e0b;
-}
-
-.badge-cancelled{
-background:#ef4444;
-}
-
-</style>
-
 </head>
 
 <body>

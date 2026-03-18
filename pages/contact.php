@@ -10,31 +10,6 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<style>
-
-.hero{
-background:linear-gradient(120deg,#ff7a18,#ff4e00);
-color:white;
-padding:40px;
-border-radius:14px;
-margin-top:20px;
-}
-
-.contact-card{
-background:white;
-padding:30px;
-border-radius:14px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-margin-top:30px;
-}
-
-.contact-item{
-padding:12px 0;
-border-bottom:1px solid #eee;
-}
-
-</style>
-
 </head>
 
 <body>

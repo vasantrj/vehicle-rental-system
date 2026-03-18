@@ -45,43 +45,6 @@ $success="Thank you for your feedback ❤️";
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<style>
-
-.header{
-background:linear-gradient(120deg,#ff7a18,#ff4e00);
-padding:30px;
-color:white;
-border-radius:12px;
-margin-top:20px;
-}
-
-.feedback-card{
-max-width:700px;
-margin:auto;
-margin-top:40px;
-padding:30px;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-background:white;
-}
-
-textarea{
-resize:none;
-border-radius:10px !important;
-}
-
-.star{
-font-size:28px;
-cursor:pointer;
-color:#ccc;
-}
-
-.star.active{
-color:#f59e0b;
-}
-
-</style>
-
 </head>
 
 <body>

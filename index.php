@@ -1,12 +1,17 @@
-<?php session_start(); ?>
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html>
 <head>
 
-<title>Vehicle Rental System</title>
+<title>Vehicle Rental</title>
 
 <link rel="stylesheet" href="assets/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -16,85 +21,77 @@
 
 <?php include "includes/navbar_public.php"; ?>
 
+<!-- HERO -->
+
 <section class="hero">
 
-<div class="container">
+<div class="hero-content">
 
-<h1>Rent Vehicles Instantly</h1>
+<h1>Rent Your Dream Ride</h1>
 
-<p>
-Smart vehicle rental platform with secure booking and instant invoice.
-</p>
+<p>Luxury • Comfort • Performance</p>
 
-<a href="auth/register.php" class="btn btn-light btn-lg me-2">
-Get Started
+<?php if(isset($_SESSION['user_id'])){ ?>
+
+<a href="user/book-vehicle.php" class="btn-main">
+Browse Vehicles
 </a>
 
-<a href="auth/login.php" class="btn btn-light btn-lg">
-Login
+<?php }else{ ?>
+
+<a href="auth/login.php" class="btn-main">
+Login to Book
 </a>
+
+<?php } ?>
 
 </div>
 
 </section>
 
-<section class="py-5">
+<!-- POPULAR VEHICLES -->
 
-<div class="container">
+<section class="container mt-5">
 
-<h2 class="text-center mb-5">
-Popular Vehicles
-</h2>
+<h2 class="text-center mb-4">Popular Vehicles</h2>
 
 <div class="row g-4">
 
-<div class="col-md-3">
+<?php
+include "config/db.php";
 
-<div class="card vehicle-card">
+$q=mysqli_query($conn,"SELECT * FROM vehicles LIMIT 6");
 
-<img src="assets/images/car1.jpg">
+while($v=mysqli_fetch_assoc($q)){
+?>
 
-<div class="card-body text-center">
+<div class="col-md-4">
 
-<h5>Sedan Car</h5>
+<div class="vehicle-card">
 
-<p>Comfortable city rides</p>
+<img src="assets/images/<?php echo $v['image']; ?>">
 
-</div>
+<div class="vehicle-info">
 
-</div>
+<h5><?php echo $v['name']; ?></h5>
 
-</div>
+<p class="vehicle-price">
+₹<?php echo $v['price_per_day']; ?> / day
+</p>
 
-<div class="col-md-3">
+<?php if(isset($_SESSION['user_id'])){ ?>
 
-<div class="card vehicle-card">
+<a href="user/book-vehicle.php" class="btn-book">
+Book Now
+</a>
 
-<img src="assets/images/bike1.jpg">
+<?php }else{ ?>
 
-<div class="card-body text-center">
+<a href="auth/login.php" class="btn-book">
+Login to Book
+</a>
 
-<h5>Sport Bike</h5>
-
-<p>Perfect for quick travel</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="col-md-3">
-
-<div class="card vehicle-card">
-
-<img src="assets/images/car2.jpg">
-
-<div class="card-body text-center">
-
-<h5>Luxury Car</h5>
-
-<p>Premium driving experience</p>
+<?php } ?>
 
 </div>
 
@@ -102,19 +99,77 @@ Popular Vehicles
 
 </div>
 
-<div class="col-md-3">
-
-<div class="card vehicle-card">
-
-<img src="assets/images/suv1.jpg">
-
-<div class="card-body text-center">
-
-<h5>SUV</h5>
-
-<p>Great for family trips</p>
+<?php } ?>
 
 </div>
+
+</section>
+
+<!-- TESTIMONIAL -->
+
+<section class="container mt-5">
+
+<h2 class="text-center mb-5">What Our Customers Say</h2>
+
+<div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+
+<div class="carousel-inner">
+
+<div class="carousel-item active">
+
+<div class="text-center">
+
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+
+<p>
+Amazing rental experience. Booking was smooth and the car was perfect.
+</p>
+
+<strong>Rahul Sharma</strong>
+
+</div>
+
+</div>
+
+<div class="carousel-item">
+
+<div class="text-center">
+
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+
+<p>
+Great service and affordable pricing.
+</p>
+
+<strong>Ananya Patel</strong>
+
+</div>
+
+</div>
+
+<div class="carousel-item">
+
+<div class="text-center">
+
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+
+<p>
+Secure payment and easy booking process.
+</p>
+
+<strong>Vikram Singh</strong>
 
 </div>
 
@@ -126,57 +181,39 @@ Popular Vehicles
 
 </section>
 
-<section class="py-5 bg-light">
+<!-- WHY US -->
 
-<div class="container">
+<section class="container text-center mt-5">
 
-<h2 class="text-center mb-5">
-Why Choose Us
-</h2>
+<h2>Why Choose Us</h2>
 
-<div class="row g-4">
+<div class="row mt-4">
 
-<div class="col-md-4">
-
-<div class="feature-box">
-
-<h4>📅 Smart Booking</h4>
-
-<p>
-Choose available dates using our intelligent booking calendar.
-</p>
-
-</div>
-
-</div>
-
-<div class="col-md-4">
-
-<div class="feature-box">
+<div class="col-md-3 why-box">
 
 <h4>💳 Secure Payment</h4>
-
-<p>
-Pay safely with Razorpay integration.
-</p>
+<p>Safe Razorpay integration</p>
 
 </div>
 
-</div>
+<div class="col-md-3 why-box">
 
-<div class="col-md-4">
-
-<div class="feature-box">
-
-<h4>🧾 Instant Invoice</h4>
-
-<p>
-Download professional invoices immediately after booking.
-</p>
+<h4>🚗 Premium Vehicles</h4>
+<p>Well maintained fleet</p>
 
 </div>
 
+<div class="col-md-3 why-box">
+
+<h4>⚡ Instant Booking</h4>
+<p>Quick and easy process</p>
+
 </div>
+
+<div class="col-md-3 why-box">
+
+<h4>📞 24/7 Support</h4>
+<p>Always available</p>
 
 </div>
 
@@ -184,29 +221,15 @@ Download professional invoices immediately after booking.
 
 </section>
 
-<section class="cta">
+<!-- FOOTER -->
 
-<div class="container">
+<footer class="text-center p-4">
 
-<h2>Start Renting Today</h2>
-
-<p class="mt-3 mb-4">
-Create your account and book vehicles in seconds.
-</p>
-
-<a href="auth/register.php" class="btn btn-light btn-lg">
-Create Account
-</a>
-
-</div>
-
-</section>
-
-<footer class="bg-dark text-white text-center p-4">
-
-Vehicle Rental System © <?= date("Y") ?>
+<p>© <?php echo date("Y"); ?> Vehicle Rental System</p>
 
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

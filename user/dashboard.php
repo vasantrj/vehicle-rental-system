@@ -43,44 +43,6 @@ $vehicles = mysqli_fetch_assoc(mysqli_query($conn,
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<style>
-
-.dashboard-header{
-padding:40px 0;
-}
-
-.stat-card{
-border:none;
-border-radius:12px;
-padding:25px;
-color:white;
-}
-
-.bg-orange{
-background:#f97316;
-}
-
-.bg-darkblue{
-background:#1f2937;
-}
-
-.bg-green{
-background:#16a34a;
-}
-
-.vehicle-card{
-border:none;
-border-radius:12px;
-box-shadow:0 6px 20px rgba(0,0,0,0.1);
-}
-
-.vehicle-card img{
-height:180px;
-object-fit:cover;
-}
-
-</style>
-
 </head>
 
 <body>
