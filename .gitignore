@@ -1,0 +1,18 @@
+# Environment variables (IMPORTANT)
+.env
+
+# Composer
+/vendor/
+
+# Node modules (if any)
+/node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# XAMPP / temp
+/tmp/
