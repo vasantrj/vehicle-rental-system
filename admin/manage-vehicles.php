@@ -32,9 +32,9 @@ $total=mysqli_num_rows($result);
     <div class="sub"><?= $total ?> vehicle<?= $total!=1?'s':'' ?> in fleet</div>
   </div>
 
-  <?php if(isset($_GET['deleted'])): ?><div class="alert alert-success mb-4">🗑️ Vehicle deleted successfully.</div><?php endif; ?>
-  <?php if(isset($_GET['updated'])): ?><div class="alert alert-success mb-4">✅ Vehicle updated successfully.</div><?php endif; ?>
-  <?php if(isset($_GET['added'])): ?><div class="alert alert-success mb-4">✅ Vehicle added successfully.</div><?php endif; ?>
+  <?php if(isset($_GET['deleted'])): ?><div class="alert alert-success mb-4">Vehicle deleted successfully.</div><?php endif; ?>
+  <?php if(isset($_GET['updated'])): ?><div class="alert alert-success mb-4">Vehicle updated successfully.</div><?php endif; ?>
+  <?php if(isset($_GET['added'])): ?><div class="alert alert-success mb-4">Vehicle added successfully.</div><?php endif; ?>
 
   <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
     <form method="GET" style="display:flex;gap:8px">

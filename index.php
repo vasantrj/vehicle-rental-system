@@ -2,6 +2,7 @@
 session_start();
 $root = '';
 include 'config/db.php';
+include 'includes/track_visit.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -152,7 +153,7 @@ include 'config/db.php';
             <div class="testi-quote">"</div>
             <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             <p class="testi-text">Absolutely seamless experience! Booked a Hyundai Creta for a weekend trip to Coorg. The car was spotless, and the invoice was in my inbox within minutes of payment.</p>
-            <div class="testi-name">Rahul Sharma</div><div class="testi-role">Software Engineer · Bengaluru</div>
+            <div class="testi-name">Varun Hiremath</div><div class="testi-role">Software Engineer · Bengaluru</div>
           </div>
         </div>
         <div class="carousel-item">
@@ -160,7 +161,7 @@ include 'config/db.php';
             <div class="testi-quote">"</div>
             <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             <p class="testi-text">The pricing is super transparent and the Razorpay checkout was instant. I loved seeing the price calculator update as I picked dates. Will definitely use again!</p>
-            <div class="testi-name">Ananya Patel</div><div class="testi-role">Product Designer · Mumbai</div>
+            <div class="testi-name">Sagar Jamkhandi</div><div class="testi-role">Product Designer · Mumbai</div>
           </div>
         </div>
         <div class="carousel-item">
@@ -168,7 +169,7 @@ include 'config/db.php';
             <div class="testi-quote">"</div>
             <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             <p class="testi-text">Best vehicle rental platform I've used. Booking a Royal Enfield for my Manali trip was so easy — blocked dates showed clearly and support was super responsive.</p>
-            <div class="testi-name">Vikram Singh</div><div class="testi-role">Entrepreneur · Delhi</div>
+            <div class="testi-name">Sammed C</div><div class="testi-role">Entrepreneur · Delhi</div>
           </div>
         </div>
       </div>

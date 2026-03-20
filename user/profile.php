@@ -17,8 +17,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       if($_POST['new_password']!=$_POST['confirm_password']){ $error="Passwords do not match."; }
       elseif(strlen($_POST['new_password'])<6){ $error="Password must be at least 6 characters."; }
       else {
-        $pw = mysqli_real_escape_string($conn,$_POST['new_password']);
-        mysqli_query($conn,"UPDATE users SET name='$name',phone='$phone',password='$pw' WHERE id=$uid");
+        $pw = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
+        $pwEsc = mysqli_real_escape_string($conn, $pw);
+        mysqli_query($conn,"UPDATE users SET name='$name',phone='$phone',password='$pwEsc' WHERE id=$uid");
         $success="Profile and password updated!";
       }
     } else {

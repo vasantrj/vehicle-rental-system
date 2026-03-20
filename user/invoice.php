@@ -140,8 +140,8 @@ $days=(new DateTime($d['start_date']))->diff(new DateTime($d['end_date']))->days
       <h2>🚗 DriveEase</h2>
       <p>
         support@driveease.in<br>
-        +91 98765 43210<br>
-        Bengaluru, Karnataka, India
+        +91 89512 34347<br>
+        Belagavi, Karnataka, India
       </p>
     </div>
     <div class="invoice-right">

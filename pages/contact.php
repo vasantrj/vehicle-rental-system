@@ -2,6 +2,7 @@
 session_start();
 $root='../';
 include '../config/db.php';
+include '../includes/track_visit.php';
 $success=''; $error='';
 if($_SERVER['REQUEST_METHOD']==='POST'){
   $name  = mysqli_real_escape_string($conn, trim($_POST['name']??''));
@@ -48,8 +49,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             <?php
             $contacts = [
               ['📧','Email','support@driveease.in','mailto:support@driveease.in'],
-              ['📞','Phone','+91 98765 43210','tel:+919876543210'],
-              ['📍','Address','Bengaluru, Karnataka, India',null],
+              ['📞','Phone','+91 89512 34347','tel:+91 89512 34347'],
+              ['📍','Address','Belagavi, Karnataka, India',null],
               ['⏰','Support Hours','24/7 — Always Available',null],
             ];
             foreach($contacts as [$icon,$label,$value,$link]):

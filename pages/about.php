@@ -1,4 +1,4 @@
-<?php session_start(); $root='../'; ?>
+<?php session_start(); $root='../'; include '../config/db.php'; include '../includes/track_visit.php'; ?>
 <!DOCTYPE html><html lang="en"><head>
 <?php include '../includes/head.php'; ?>
 <title>About Us — DriveEase</title>

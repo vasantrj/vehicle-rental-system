@@ -10,7 +10,12 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   $email = mysqli_real_escape_string($conn,$_POST['email']);
   $pass  = $_POST['password'];
   $user  = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM users WHERE email='$email'"));
-  if($user && $user['password']===$pass){
+  if($user && (password_verify($pass, $user['password']) || $user['password'] === $pass)){
+    // Auto-upgrade plain-text password to bcrypt on first login
+    if($user['password'] === $pass){
+      $newHash = mysqli_real_escape_string($conn, password_hash($pass, PASSWORD_DEFAULT));
+      mysqli_query($conn,"UPDATE users SET password='$newHash' WHERE id={$user['id']}");
+    }
     $_SESSION['user_id']=$user['id'];
     $_SESSION['user_name']=$user['name'];
     $_SESSION['role']=$user['role'];

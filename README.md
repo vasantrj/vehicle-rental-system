@@ -1,98 +1,311 @@
-# 🚗 DriveEase — Vehicle Rental System
+<div align="center">
 
-A full-stack PHP + MySQL vehicle rental web application with Razorpay payment integration, booking management, admin panel, and email confirmation.
+# 🚗 DriveEase — Vehicle Rental Management System
+
+### A full-stack PHP + MySQL web application for managing vehicle rentals with Razorpay payments, email notifications, PDF invoices, and a real-time admin analytics dashboard.
+
+[![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?logo=php&logoColor=white)](https://php.net)
+[![MySQL](https://img.shields.io/badge/MySQL-5.7+-4479A1?logo=mysql&logoColor=white)](https://mysql.com)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com)
+[![Razorpay](https://img.shields.io/badge/Razorpay-Payment-02042B?logo=razorpay&logoColor=white)](https://razorpay.com)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Live-brightgreen)](#)
+
+**[📸 Screenshots](#-screenshots)** &nbsp;|&nbsp;
+ **[🚀 Deploy Guide](#-deployment)** &nbsp;|&nbsp;
+  **[👤 Author](#-author)**
+
+---
+
+![DriveEase Banner](assets/images/hero-car.jpg)
+
+</div>
+
+---
+
+## 📋 Table of Contents
+
+- [About the Project](#-about-the-project)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Screenshots](#-screenshots)
+- [Getting Started](#-getting-started-local-setup)
+- [Environment Variables](#-environment-variables)
+- [Database Setup](#-database-setup)
+- [Deployment](#-deployment)
+- [Project Structure](#-project-structure)
+- [Demo Credentials](#-demo-credentials)
+- [Author](#-author)
+- [License](#-license)
+
+---
+
+## 🎯 About the Project
+
+**DriveEase** is a complete vehicle rental management system built from scratch using core PHP and MySQL — no heavy frameworks. It features a public-facing booking portal, a full admin control panel, Razorpay payment integration, automated email confirmations via PHPMailer, printable PDF invoices, and a private analytics dashboard with real-time visitor tracking.
+
+> Built as an academic mini project demonstrating full-stack web development skills including database design, payment gateway integration, session management, and responsive UI design.
+
+---
 
 ## ✨ Features
 
-- **User Panel** — Browse vehicles, book by date range, Razorpay payment, invoice download
-- **Admin Panel** — Manage bookings, vehicles, users, and view revenue analytics
-- **Email Confirmation** — Automatic booking confirmation email via Gmail SMTP
-- **PDF Invoices** — Generated using FPDF
-- **Responsive UI** — Dark-themed custom CSS
+### 👤 User Panel
+- 🔐 Register / Login with session-based auth (bcrypt password hashing)
+- 🚗 Browse vehicles with search, brand filter & price sort
+- 📅 Real-time date picker with booked-date blocking (Flatpickr)
+- 💳 Instant booking with Razorpay checkout (UPI, cards, netbanking)
+- 📄 Downloadable / printable invoice for every booking
+- 📋 My Bookings page with status tracking (Pending / Approved / Rejected)
+- ⭐ Submit feedback & star ratings
+- 👤 Edit profile + change password
 
-## 🛠️ Tech Stack
+### ⚙️ Admin Panel
+- 📊 Dashboard with revenue charts (Chart.js), booking status doughnut, 6-month trends
+- 👁️ **Private visitor analytics** — total, today, this week, this month + daily chart + top pages
+- 🚗 Add / Edit / Delete vehicles with live image preview
+- ✅ Approve or Reject bookings with confirmation dialogs
+- 👥 Manage users (view + delete with cascade)
+- 💬 Manage feedback (view + delete)
+- 🔍 Search & filter on all management pages
+
+### 🛠️ Technical
+- `.env` based configuration (no hardcoded credentials)
+- Bcrypt password hashing with auto-upgrade on first login
+- Bot-filtered visitor tracking (ignores crawlers + admin logins)
+- Responsive dark cyberpunk UI (custom CSS, no external UI kit)
+- Animated aurora backgrounds, glassmorphism cards, neon glow effects
+- Print-ready invoice layout
+
+---
+
+## 🔧 Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Backend | PHP 8+ |
-| Database | MySQL |
-| Payments | Razorpay |
-| Email | PHPMailer + Gmail SMTP |
-| PDF | FPDF |
-| Frontend | Bootstrap 5 + Custom CSS |
+| **Backend** | PHP 8.0+ (core, no framework) |
+| **Database** | MySQL 5.7+ / MariaDB |
+| **Frontend** | HTML5, CSS3, Bootstrap 5.3, vanilla JS |
+| **Payments** | Razorpay PHP SDK |
+| **Email** | PHPMailer 6 via Gmail SMTP |
+| **PDF** | FPDF 1.86 |
+| **Charts** | Chart.js |
+| **Date Picker** | Flatpickr |
+| **Icons** | Font Awesome 6 |
+| **Server** | Apache (XAMPP locally / InfinityFree / Hostinger / Railway) |
 
-## ⚡ Setup (Local)
+---
 
-### 1. Clone the repo
-```bash
-git clone https://github.com/YOUR_USERNAME/driveease.git
-cd driveease
-```
+## 📸 Screenshots
 
-### 2. Create your `.env` file
-```bash
-cp .env.example .env
-```
-Edit `.env` with your actual credentials (DB, Razorpay, Gmail).
-
-### 3. Import the database
-Import `sql/vehicle_rental.sql` into MySQL:
-```bash
-mysql -u root -p < sql/vehicle_rental.sql
-```
-
-### 4. Gmail App Password (for email)
-1. Go to [Google Account → Security](https://myaccount.google.com/security)
-2. Enable **2-Step Verification**
-3. Go to **App Passwords** → Generate one for "Mail"
-4. Paste that 16-character password into `.env` as `MAIL_PASSWORD`
-
-### 5. Install dependencies
-```bash
-composer install
-```
-
-### 6. Run locally
-Use XAMPP/WAMP — place project in `htdocs/` and visit `http://localhost/driveease/`
-
-## 🔒 Security
-
-- All secrets live in `.env` (never committed to Git)
-- `.env.example` shows the required keys without real values
-- Passwords and API keys are **never** hardcoded in PHP files
-
-## 🚀 Free Deployment Options
-
-| Platform | Notes |
+| Page | Preview |
 |---|---|
-| [InfinityFree](https://infinityfree.net) | Free PHP + MySQL hosting |
-| [000webhost](https://000webhost.com) | Free PHP hosting |
-| [Railway.app](https://railway.app) | Free tier, supports PHP via Docker |
-| [Render.com](https://render.com) | Free web services |
+| Homepage | _Add screenshot_ |
+| User Dashboard | _Add screenshot_ |
+| Admin Dashboard | _Add screenshot_ |
+| Vehicle Booking | _Add screenshot_ |
+| Invoice | _Add screenshot_ |
 
-## 👤 Default Admin Login
-After importing SQL:
-- **Email:** admin@driveease.in
-- **Password:** admin123
+---
+
+## 🚀 Getting Started (Local Setup)
+
+### Prerequisites
+- [XAMPP](https://www.apachefriends.org/) (PHP 8.0+ + MySQL + Apache)
+- A Gmail account with [App Password](https://myaccount.google.com/apppasswords) enabled
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/avadhutjoshi/vehicle-rental-system.git
+
+# 2. Move to XAMPP's web root
+#    Windows: C:\xampp\htdocs\vehicle-rental-system
+#    macOS:   /Applications/XAMPP/htdocs/vehicle-rental-system
+
+# 3. Copy environment config
+cp .env.example .env
+# Edit .env with your DB + email + Razorpay credentials
+
+# 4. Import the database
+#    Open http://localhost/phpmyadmin → Create DB: vehicle_rental
+#    Import: sql/vehicle_rental.sql
+
+# 5. Start XAMPP → Apache + MySQL
+
+# 6. Visit http://localhost/vehicle-rental-system/
+```
+
+---
+
+## 🔐 Environment Variables
+
+Copy `.env.example` to `.env` and fill in your values:
+
+```env
+# Database
+DB_HOST=localhost
+DB_USERNAME=root
+DB_PASSWORD=
+DB_DATABASE=vehicle_rental
+
+# Razorpay (https://dashboard.razorpay.com/app/keys)
+RAZORPAY_KEY_ID=rzp_test_XXXXXXXXXXXX
+RAZORPAY_KEY_SECRET=XXXXXXXXXXXXXXXXXXXXXXXX
+
+# Email (Gmail App Password — NOT your regular Gmail password)
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_ENCRYPTION=tls
+MAIL_USERNAME=your_email@gmail.com
+MAIL_PASSWORD=xxxx xxxx xxxx xxxx
+MAIL_FROM_ADDRESS=your_email@gmail.com
+MAIL_FROM_NAME=DriveEase
+```
+
+> **Never commit `.env` to GitHub.** It is already excluded in `.gitignore`.
+
+> **For better email deliverability:** Use [Brevo](https://brevo.com) free SMTP (`smtp-relay.brevo.com` port 587) instead of Gmail on shared hosting — many hosts block Gmail's SMTP ports.
+
+---
+
+## 🗄️ Database Setup
+
+Import `sql/vehicle_rental.sql` into phpMyAdmin or run:
+
+```bash
+mysql -u root -p vehicle_rental < sql/vehicle_rental.sql
+```
+
+**Tables:**
+
+| Table | Description |
+|---|---|
+| `users` | Registered users (admin + customers) |
+| `vehicles` | Vehicle listings with price and image |
+| `bookings` | All bookings with status + payment info |
+| `feedback` | Customer reviews and star ratings |
+| `visitors` | Anonymous visitor tracking (admin-only) |
+
+---
+
+## ☁️ Deployment
+
+### Option 1 — Railway (Free, best for demos) ⭐ Recommended
+
+1. Push your repo to GitHub (`.env` must NOT be committed)
+2. Sign up at [railway.app](https://railway.app) → New Project → Deploy from GitHub
+3. Click **Add Plugin → MySQL** in the Railway dashboard
+4. Set environment variables in Railway (DB creds are auto-provided by the plugin)
+5. Import `sql/vehicle_rental.sql` via Railway's MySQL shell
+6. Get a live `*.railway.app` URL with free SSL — perfect for showing recruiters
+
+---
+
+### Option 2 — InfinityFree (Completely Free)
+
+1. Sign up at [infinityfree.net](https://infinityfree.net)
+2. File Manager → upload all files to `htdocs/`
+3. Create MySQL database → import `sql/vehicle_rental.sql`
+4. Edit `.env` with InfinityFree credentials
+5. **Note:** Gmail SMTP is blocked — use [Brevo](https://brevo.com) free SMTP instead
+
+---
+
+### Option 3 — Hostinger (₹69/month, most reliable)
+
+1. Buy the Single Shared plan at [hostinger.in](https://hostinger.in)
+2. hPanel → File Manager → upload to `public_html/`
+3. Databases → Create MySQL DB → import SQL → update `.env`
+
+---
 
 ## 📁 Project Structure
 
 ```
-driveease/
-├── admin/          # Admin panel pages
-├── auth/           # Login / Register / Logout
-├── assets/         # CSS, JS, Images
-├── config/         # DB & Razorpay config (uses .env)
-├── fpdf/           # PDF library
-├── includes/       # Shared headers, footers, navbars
-├── pages/          # Public pages (About, Contact)
-├── phpmailer/      # Email library
-├── razorpay/       # Razorpay SDK loader
-├── user/           # User panel pages
-├── sql/            # Database schema
-├── .env.example    # Environment template
-└── index.php       # Home page
+vehicle-rental-system/
+├── index.php                    ← Public homepage
+├── mail_helper.php              ← HTML email sender (PHPMailer)
+├── .env                         ← YOUR credentials (not in git)
+├── .env.example                 ← Safe template for others
+│
+├── admin/
+│   ├── dashboard.php            ← Stats, charts + visitor analytics
+│   ├── bookings.php             ← Approve/reject bookings
+│   ├── manage-vehicles.php      ← Vehicle CRUD
+│   ├── add-vehicle.php / edit-vehicle.php
+│   ├── users.php / feedbacks.php
+│
+├── user/
+│   ├── dashboard.php / vehicles.php / my-bookings.php
+│   ├── payment.php / payment_verify.php / payment_result.php
+│   ├── invoice.php / profile.php / feedback.php
+│
+├── auth/    login.php / register.php / logout.php
+├── pages/   about.php / contact.php
+├── config/  db.php / razorpay.php
+│
+├── includes/
+│   ├── track_visit.php          ← 👁️ Visitor tracking helper
+│   ├── head.php / footer.php / scripts.php
+│   └── navbar_admin.php / navbar_user.php / navbar_public.php
+│
+├── assets/  style.css / main.js / images/
+├── sql/     vehicle_rental.sql
+├── razorpay/src/ / phpmailer/src/ / fpdf/ / vendor/
 ```
 
 ---
-Built with ❤️ by Vasant Joshi
+
+## 👁️ Visitor Tracking (Admin Only)
+
+Private visitor counter built into the database — no third-party service.
+
+**Tracks:** Total · Today · This Week · This Month · Daily chart (7 days) · Top 5 pages
+
+**Privacy:** Bot filtering, admin visits excluded, 30-min deduplication per IP+page, no personal data stored.
+
+**Where to view:** Admin → Dashboard → "Website Visitors" section.
+
+---
+
+## 🔑 Demo Credentials
+
+> For testing purposes only. Change the admin password after deploying your own instance.
+
+| Role | Email | Password |
+|---|---|---|
+| **Admin** | admin@gmail.com | admin |
+| **User** | Register a new account | — |
+
+> The admin password auto-upgrades to bcrypt on first login.
+
+---
+
+## 👤 Author
+
+<div align="center">
+
+**Avadhut Joshi**
+
+[![GitHub](https://img.shields.io/badge/GitHub-avadhutjoshi-181717?logo=github)](https://github.com/avadhutjoshi)
+[![Email](https://img.shields.io/badge/Email-avadhutjoshi2580@gmail.com-EA4335?logo=gmail)](mailto:avadhutjoshi2580@gmail.com)
+
+</div>
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+**⭐ Star this repo if you found it helpful!**
+
+Made with ❤️ using PHP, MySQL & lots of ☕
+
+</div>

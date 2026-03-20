@@ -254,7 +254,20 @@ function sendBookingEmail($toEmail, $userName, $vehicleName, $start, $end, $tota
         $mail->addAddress($toEmail, $userName);
         $mail->addReplyTo('support@driveease.in', 'DriveEase Support');
 
-        $mail->Subject  = 'Booking Confirmed - DriveEase';   // plain subject, no emoji
+        // ── Anti-spam headers ────────────────────────────────────────────
+        $mail->addCustomHeader('X-Priority', '3');
+        $mail->addCustomHeader('X-Mailer', 'DriveEase Mailer');
+        $mail->addCustomHeader('Precedence', 'bulk');
+        $mail->MessageID = '<booking-' . time() . '-' . rand(1000,9999) . '@driveease.in>';
+
+        // ── Anti-spam headers ────────────────────────────────────────────
+        $mail->addCustomHeader('X-Priority', '3');
+        $mail->addCustomHeader('X-Mailer', 'DriveEase Mailer 1.0');
+        $mail->addCustomHeader('Precedence', 'bulk');
+        $mail->addCustomHeader('List-Unsubscribe', '<mailto:support@driveease.in?subject=Unsubscribe>');
+        $mail->MessageID = '<booking-' . time() . '-' . rand(1000,9999) . '@driveease.in>';
+
+        $mail->Subject  = 'Booking Confirmed: ' . $vehicleClean . ' — DriveEase';
         $mail->Body     = $htmlBody;
         $mail->AltBody  = $plainText;                         // plain-text fallback
 

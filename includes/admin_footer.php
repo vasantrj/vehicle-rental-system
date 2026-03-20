@@ -18,12 +18,12 @@
       <div>
         <div class="footer-col-title">Contact</div>
         <span class="footer-link">📧 support@driveease.in</span>
-        <span class="footer-link">📞 +91 98765 43210</span>
-        <span class="footer-link">📍 Bengaluru, India</span>
+        <span class="footer-link">📞 +91 89512 34347</span>
+        <span class="footer-link">📍 Belagavi, India</span>
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© <?= date('Y') ?> DriveEase. All rights reserved.</span>
+      <span class="footer-copy">© <?= date('Y') ?> DriveEase. All rights reserved by Vasant Joshi.</span>
       <span class="footer-badge">⚡ Built with PHP + MySQL</span>
     </div>
   </div>

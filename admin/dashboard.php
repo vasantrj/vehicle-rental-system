@@ -12,7 +12,43 @@ $rejected = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM bookin
 $vehicles = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM vehicles"))['c'];
 $users    = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM users WHERE role='user'"))['c'];
 $feedback = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM feedback"))['c'];
+
+// ── Visitor analytics ────────────────────────────────────────────────────────
+$vis_total = 0; $vis_today = 0; $vis_week = 0; $vis_month = 0;
+$vis_top_pages = []; $vis_daily_labels = []; $vis_daily_counts = [];
+// Check if visitors table exists before querying
+if(mysqli_query($conn,"SELECT 1 FROM visitors LIMIT 1")){
+  $vis_total = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM visitors"))['c'];
+  $vis_today = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM visitors WHERE DATE(visited_at)=CURDATE()"))['c'];
+  $vis_week  = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM visitors WHERE visited_at >= DATE_SUB(NOW(),INTERVAL 7 DAY)"))['c'];
+  $vis_month = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM visitors WHERE visited_at >= DATE_SUB(NOW(),INTERVAL 30 DAY)"))['c'];
+  $top_res   = mysqli_query($conn,"SELECT page, COUNT(*) c FROM visitors GROUP BY page ORDER BY c DESC LIMIT 5");
+  while($r=mysqli_fetch_assoc($top_res)) $vis_top_pages[]=$r;
+  for($i=6;$i>=0;$i--){
+    $d   = date('Y-m-d', strtotime("-$i days"));
+    $lbl = date('D', strtotime("-$i days"));
+    $cnt = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM visitors WHERE DATE(visited_at)='$d'"))['c'];
+    $vis_daily_labels[] = $lbl;
+    $vis_daily_counts[] = $cnt;
+  }
+}
+// ────────────────────────────────────────────────────────────────────────────
+
 $recent   = mysqli_query($conn,"SELECT b.*,u.name uname,v.name vname FROM bookings b JOIN users u ON b.user_id=u.id JOIN vehicles v ON b.vehicle_id=v.id ORDER BY b.id DESC LIMIT 8");
+
+// Visitor stats
+$vis_total = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM visitors"))['c'] ?? 0;
+$vis_today = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM visitors WHERE DATE(visited_at)=CURDATE()"))['c'] ?? 0;
+$vis_week  = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM visitors WHERE visited_at >= DATE_SUB(NOW(),INTERVAL 7 DAY)"))['c'] ?? 0;
+$vis_month = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM visitors WHERE visited_at >= DATE_SUB(NOW(),INTERVAL 30 DAY)"))['c'] ?? 0;
+$top_pages = mysqli_query($conn,"SELECT page, COUNT(*) c FROM visitors GROUP BY page ORDER BY c DESC LIMIT 5");
+// Daily visitors last 7 days
+$vis_days=[]; $vis_counts=[];
+for($i=6;$i>=0;$i--){
+  $vis_days[]   = date('D',strtotime("-$i days"));
+  $cnt = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) c FROM visitors WHERE DATE(visited_at)=DATE_SUB(CURDATE(),INTERVAL $i DAY)"))['c'];
+  $vis_counts[] = $cnt;
+}
 
 // Monthly revenue for chart - last 6 months
 $months = []; $revenues = [];
@@ -191,6 +227,62 @@ for($i=5;$i>=0;$i--){
     </div>
   </div>
 
+  <!-- ── VISITOR ANALYTICS ─────────────────────────────────────── -->
+  <div class="row g-4 mb-5">
+    <div class="col-12">
+      <div class="chart-card">
+        <div class="panel-title mb-4"><div class="panel-title-dot"></div>👁️ Website Visitors <span style="font-size:.72rem;color:var(--t3);font-weight:400;margin-left:8px">Bot-filtered · Admin visits excluded</span></div>
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-md-3">
+            <div class="stat-card stat-blue" style="padding:16px 18px">
+              <span class="stat-label">All-Time</span>
+              <span class="stat-value" style="font-size:1.6rem" data-target="<?= $vis_total ?>"><?= number_format($vis_total) ?></span>
+              <span class="stat-icon-bg">👁️</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-card stat-green" style="padding:16px 18px">
+              <span class="stat-label">Today</span>
+              <span class="stat-value" style="font-size:1.6rem" data-target="<?= $vis_today ?>"><?= $vis_today ?></span>
+              <span class="stat-icon-bg">📅</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-card stat-purple" style="padding:16px 18px">
+              <span class="stat-label">This Week</span>
+              <span class="stat-value" style="font-size:1.6rem" data-target="<?= $vis_week ?>"><?= $vis_week ?></span>
+              <span class="stat-icon-bg">📊</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-card stat-orange" style="padding:16px 18px">
+              <span class="stat-label">This Month</span>
+              <span class="stat-value" style="font-size:1.6rem" data-target="<?= $vis_month ?>"><?= $vis_month ?></span>
+              <span class="stat-icon-bg">🗓️</span>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div style="font-size:.78rem;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:12px">Daily Visitors — Last 7 Days</div>
+            <canvas id="visitorChart" height="90"></canvas>
+          </div>
+          <div class="col-lg-4">
+            <div style="font-size:.78rem;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:12px">Top Pages</div>
+            <?php if(empty($vis_top_pages)): ?>
+              <p style="color:var(--t3);font-size:.85rem">No data yet. Visitors tracked on public pages.</p>
+            <?php else: foreach($vis_top_pages as $pg): ?>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--b1)">
+                <span style="color:var(--t2);font-size:.85rem">📄 <?= htmlspecialchars($pg['page']) ?></span>
+                <span style="color:var(--cyan);font-weight:700;font-size:.85rem"><?= $pg['c'] ?></span>
+              </div>
+            <?php endforeach; endif; ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 <?php include '../includes/admin_footer.php'; ?>
 <?php include '../includes/scripts.php'; ?>
@@ -239,6 +331,28 @@ new Chart(document.getElementById('statusChart'),{
     cutout:'65%',
     plugins:{legend:{display:false}},
     responsive:true
+  }
+});
+new Chart(document.getElementById('visitorChart'),{
+  type:'bar',
+  data:{
+    labels:[<?= "'" . implode("','", $vis_daily_labels) . "'" ?>],
+    datasets:[{
+      label:'Visitors',
+      data:[<?= implode(',', $vis_daily_counts) ?>],
+      backgroundColor:'rgba(0,245,212,.15)',
+      borderColor:'rgba(0,245,212,.7)',
+      borderWidth:2,
+      borderRadius:4,
+      hoverBackgroundColor:'rgba(0,245,212,.3)'
+    }]
+  },
+  options:{
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#8896ad',font:{size:11}}},
+      y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#8896ad',stepSize:1,precision:0}}
+    }
   }
 });
 </script>

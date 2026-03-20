@@ -36,7 +36,7 @@ $total=mysqli_num_rows($q);
     <div class="sub"><?= $total ?> registered user<?= $total!=1?'s':'' ?></div>
   </div>
 
-  <?php if(isset($_GET['deleted'])): ?><div class="alert alert-success mb-4">🗑️ User deleted successfully.</div><?php endif; ?>
+  <?php if(isset($_GET['deleted'])): ?><div class="alert alert-success mb-4">User deleted successfully.</div><?php endif; ?>
 
   <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
     <form method="GET" style="display:flex;gap:8px">

@@ -59,6 +59,20 @@ INSERT INTO vehicles (name,brand,price_per_day,image,status) VALUES
 ('Hyundai Creta','Hyundai',2000,'creta.jpg','available'),
 ('Royal Enfield Classic 350','RE',800,'re.jpg','available');
 
--- ADMIN ACCOUNT (password: admin)
+-- VISITORS (private analytics — bot-filtered, no personal data)
+CREATE TABLE IF NOT EXISTS visitors (
+  id         INT AUTO_INCREMENT PRIMARY KEY,
+  ip         VARCHAR(45)  NOT NULL,
+  page       VARCHAR(255) NOT NULL,
+  user_agent VARCHAR(500),
+  visited_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_page (page),
+  INDEX idx_visited_at (visited_at)
+);
+
+-- ADMIN ACCOUNT
+-- Demo password: admin  (plain-text seed for local setup)
+-- ⚠️  On production: log in → Profile → change your password immediately.
+--     New passwords are automatically hashed (bcrypt) via the app.
 INSERT INTO users (name,email,password,phone,role) VALUES
 ('Admin','admin@gmail.com','admin','9999999999','admin');

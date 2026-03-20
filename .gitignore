@@ -1,18 +1,27 @@
-# Environment variables (IMPORTANT)
+# Environment — NEVER commit real credentials
 .env
 
-# Composer
+# Composer dependencies
 /vendor/
 
-# Node modules (if any)
-/node_modules/
+# User-uploaded vehicle images (large binary files)
+/uploads/vehicles/*
+!/uploads/vehicles/.gitkeep
 
-# OS files
+# OS junk
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Logs
+# IDE folders
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# PHP logs
 *.log
-
-# XAMPP / temp
 /tmp/
+
+# Node (if ever used)
+/node_modules/

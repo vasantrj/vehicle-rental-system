@@ -13,7 +13,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   if(strlen($pass)<6){ $error="Password must be at least 6 characters."; }
   elseif(mysqli_fetch_assoc(mysqli_query($conn,"SELECT id FROM users WHERE email='$email'"))){ $error="Email already registered."; }
   else {
-    mysqli_query($conn,"INSERT INTO users(name,email,password,phone,role) VALUES('$name','$email','$pass','$phone','user')");
+    $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
+    mysqli_query($conn,"INSERT INTO users(name,email,password,phone,role) VALUES('$name','$email','$hashedPass','$phone','user')");
     $success="Account created! <a href='login.php'>Sign in now →</a>";
   }
 }

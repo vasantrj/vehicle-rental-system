@@ -27,7 +27,7 @@ if($booking_id){
     <?php if($status==='success'): ?>
       <div class="result-icon success">✅</div>
       <h2 style="color:#6ee7b7">Booking Confirmed!</h2>
-      <p>Payment successful. A confirmation email has been sent to your inbox.</p>
+      <p>Payment successful. A confirmation email has been sent to your inbox (Check Spam section also !!).</p>
 
       <?php if($booking): ?>
       <div style="background:rgba(14,22,42,.8);border:1px solid var(--b1);border-radius:var(--r2);padding:18px 20px;margin-bottom:24px;text-align:left">
