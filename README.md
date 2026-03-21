@@ -190,37 +190,6 @@ mysql -u root -p vehicle_rental < sql/vehicle_rental.sql
 
 ---
 
-## ☁️ Deployment
-
-### Option 1 — Railway (Free, best for demos) ⭐ Recommended
-
-1. Push your repo to GitHub (`.env` must NOT be committed)
-2. Sign up at [railway.app](https://railway.app) → New Project → Deploy from GitHub
-3. Click **Add Plugin → MySQL** in the Railway dashboard
-4. Set environment variables in Railway (DB creds are auto-provided by the plugin)
-5. Import `sql/vehicle_rental.sql` via Railway's MySQL shell
-6. Get a live `*.railway.app` URL with free SSL — perfect for showing recruiters
-
----
-
-### Option 2 — InfinityFree (Completely Free)
-
-1. Sign up at [infinityfree.net](https://infinityfree.net)
-2. File Manager → upload all files to `htdocs/`
-3. Create MySQL database → import `sql/vehicle_rental.sql`
-4. Edit `.env` with InfinityFree credentials
-5. **Note:** Gmail SMTP is blocked — use [Brevo](https://brevo.com) free SMTP instead
-
----
-
-### Option 3 — Hostinger (₹69/month, most reliable)
-
-1. Buy the Single Shared plan at [hostinger.in](https://hostinger.in)
-2. hPanel → File Manager → upload to `public_html/`
-3. Databases → Create MySQL DB → import SQL → update `.env`
-
----
-
 ## 📁 Project Structure
 
 ```
@@ -287,7 +256,7 @@ Private visitor counter built into the database — no third-party service.
 
 <div align="center">
 
-**Avadhut Joshi**
+**Vasant Joshi**
 
 [![GitHub](https://img.shields.io/badge/GitHub-avadhutjoshi-181717?logo=github)](https://github.com/avadhutjoshi)
 [![Email](https://img.shields.io/badge/Email-avadhutjoshi2580@gmail.com-EA4335?logo=gmail)](mailto:avadhutjoshi2580@gmail.com)
