@@ -22,7 +22,7 @@ $counts = [
 ?>
 <!DOCTYPE html><html lang="en"><head>
 <?php include '../includes/head.php'; ?>
-<title>My Bookings — DriveEase</title>
+<title>My Bookings — EaseDrive</title>
 </head><body>
 <!-- BG -->
 <div class="dash-bg" aria-hidden="true"><div class="dash-bg-blob1"></div><div class="dash-bg-blob2"></div><div class="dash-bg-blob3"></div><div class="dash-bg-grid"></div></div>

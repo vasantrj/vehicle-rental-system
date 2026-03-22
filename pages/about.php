@@ -1,7 +1,7 @@
 <?php session_start(); $root='../'; include '../config/db.php'; include '../includes/track_visit.php'; ?>
 <!DOCTYPE html><html lang="en"><head>
 <?php include '../includes/head.php'; ?>
-<title>About Us — DriveEase</title>
+<title>About Us — EaseDrive</title>
 </head><body>
 <div class="dash-bg" aria-hidden="true">
   <div class="dash-bg-blob1"></div><div class="dash-bg-blob2"></div>
@@ -18,7 +18,7 @@
       Built for Modern <span class="text-gradient">Travelers</span>
     </h1>
     <p style="color:var(--t2);max-width:620px;margin:0 auto 36px;font-size:1.05rem;line-height:1.8">
-      DriveEase was founded with a single mission: make vehicle rental as seamless as booking a cab. No paperwork, no hidden charges — just great vehicles and a smooth ride.
+      EaseDrive was founded with a single mission: make vehicle rental as seamless as booking a cab. No paperwork, no hidden charges — just great vehicles and a smooth ride.
     </p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
       <a href="../auth/register.php" class="btn btn-primary btn-lg"><i class="fa-solid fa-rocket me-2"></i>Get Started Free</a>
@@ -34,7 +34,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="label-sm" style="color:var(--cyan);margin-bottom:10px">By The Numbers</p>
-      <h2>DriveEase <span class="text-gradient-cyan">at a Glance</span></h2>
+      <h2>EaseDrive <span class="text-gradient-cyan">at a Glance</span></h2>
     </div>
     <div class="row g-4">
       <div class="col-md-3 col-6"><div class="stat-card stat-orange" style="text-align:center">

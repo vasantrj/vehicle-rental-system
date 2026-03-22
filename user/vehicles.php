@@ -21,7 +21,7 @@ $total  = mysqli_num_rows($result);
 <?php include '../includes/head.php'; ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<title>Browse Vehicles — DriveEase</title>
+<title>Browse Vehicles — EaseDrive</title>
 <style>
 .fp-dark .flatpickr-input{
   background:rgba(2,4,11,.7)!important;border:1px solid rgba(255,255,255,.12)!important;

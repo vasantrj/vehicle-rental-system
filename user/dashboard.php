@@ -19,7 +19,7 @@ $initials = strtoupper(substr($user['name'],0,1));
 <?php include '../includes/head.php'; ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<title>Dashboard — DriveEase</title>
+<title>Dashboard — EaseDrive</title>
 </head><body>
 <!-- DASHBOARD BACKGROUND -->
 <div class="dash-bg" aria-hidden="true">

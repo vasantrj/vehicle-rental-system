@@ -3,7 +3,7 @@
   <div class="nav-inner">
     <a href="<?= $root ?>index.php" class="nav-brand">
       <div class="nav-brand-icon">🚗</div>
-      <span class="nav-brand-text">DriveEase</span>
+      <span class="nav-brand-text">EaseDrive</span>
     </a>
     <div class="nav-links" id="navLinks">
       <a href="<?= $root ?>index.php" class="nav-link-item active">Home</a>

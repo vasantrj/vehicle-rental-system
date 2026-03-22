@@ -62,7 +62,7 @@ for($i=5;$i>=0;$i--){
 <!DOCTYPE html><html lang="en"><head>
 <?php include '../includes/head.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<title>Admin Dashboard — DriveEase</title>
+<title>Admin Dashboard — EaseDrive</title>
 <style>
 .admin-hero{background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(0,245,212,.06));border:1px solid rgba(124,58,237,.25);border-radius:var(--r3);padding:32px;margin-bottom:36px;position:relative;overflow:hidden}
 .admin-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#7c3aed,var(--cyan),#7c3aed);background-size:200% 100%;animation:borderFlow 3s linear infinite}

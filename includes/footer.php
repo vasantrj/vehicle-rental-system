@@ -4,7 +4,7 @@
       <div>
         <div class="footer-brand">
           <div class="footer-brand-icon">🚗</div>
-          <span style="background:linear-gradient(135deg,#fff,var(--orange-pale));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">DriveEase</span>
+          <span style="background:linear-gradient(135deg,#fff,var(--orange-pale));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">EaseDrive</span>
         </div>
         <p class="footer-desc">Premium vehicle rental with instant booking, transparent pricing, and 24/7 support across India.</p>
       </div>
@@ -24,7 +24,7 @@
       </div>
       <div>
         <div class="footer-col-title">Contact</div>
-        <span class="footer-link">📧 support@driveease.in</span>
+        <span class="footer-link">📧 support@easedrive.in</span>
         <span class="footer-link">📞 +91 89512 34347</span>
         <span class="footer-link">📍 Belagavi, India</span>
       </div>

@@ -29,11 +29,11 @@ function sendBookingEmail($toEmail, $userName, $vehicleName, $start, $end, $tota
     $smtpUser  = $_ENV['MAIL_USERNAME']       ?? '';
     $smtpPass  = $_ENV['MAIL_PASSWORD']       ?? '';
     $smtpPort  = intval($_ENV['MAIL_PORT']    ?? 587);
-    $fromName  = $_ENV['MAIL_FROM_NAME']      ?? 'DriveEase';
+    $fromName  = $_ENV['MAIL_FROM_NAME']      ?? 'EaseDrive';
     $fromAddr  = $_ENV['MAIL_FROM_ADDRESS']   ?? $smtpUser;
 
     if (empty($smtpUser) || empty($smtpPass)) {
-        error_log('[DriveEase Mail] Skipped: MAIL_USERNAME or MAIL_PASSWORD missing in .env');
+        error_log('[EaseDrive Mail] Skipped: MAIL_USERNAME or MAIL_PASSWORD missing in .env');
         return false;
     }
 
@@ -46,7 +46,7 @@ function sendBookingEmail($toEmail, $userName, $vehicleName, $start, $end, $tota
     $vehicleClean   = htmlspecialchars($vehicleName, ENT_QUOTES, 'UTF-8');
 
     // ── Plain text version (important for spam filters) ──────────────────
-    $plainText = "DRIVEEASE — BOOKING CONFIRMATION\n"
+    $plainText = "EASEDRIVE — BOOKING CONFIRMATION\n"
                . "=================================\n\n"
                . "Hi $userName,\n\n"
                . "Your booking has been confirmed and payment was successful.\n\n"
@@ -64,9 +64,9 @@ function sendBookingEmail($toEmail, $userName, $vehicleName, $start, $end, $tota
                . "Date        : $dateNow\n\n"
                . "You can download your invoice by logging into your account\n"
                . "and visiting My Bookings.\n\n"
-               . "For support: support@driveease.in | +91 98765 43210\n\n"
-               . "Thank you for choosing DriveEase!\n"
-               . "-- DriveEase Team, Bengaluru";
+               . "For support: support@easedrive.in | +91 89512 34347\n\n"
+               . "Thank you for choosing EaseDrive!\n"
+               . "-- EaseDrive Team, Belagavi, India\n";
 
     // ── HTML version ─────────────────────────────────────────────────────
     $htmlBody = '<!DOCTYPE html>
@@ -199,8 +199,8 @@ function sendBookingEmail($toEmail, $userName, $vehicleName, $start, $end, $tota
               </div>
               <div style="font-size:13px;color:#475569;line-height:2">
                 - Log in to your account and go to <strong>My Bookings</strong> to download your invoice.<br>
-                - For any queries, email us at support@driveease.in<br>
-                - Contact: +91 98765 43210
+                - For any queries, email us at support@easedrive.in<br>
+                - Contact: +91 89512 34347
               </div>
             </td>
           </tr>
@@ -214,11 +214,11 @@ function sendBookingEmail($toEmail, $userName, $vehicleName, $start, $end, $tota
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
             <td style="font-size:12px;color:#94a3b8;line-height:1.6">
-              &copy; ' . $year . ' DriveEase. All rights reserved.<br>
+              &copy; ' . $year . ' EaseDrive. All rights reserved.<br>
               This is an automated email. Please do not reply directly to this message.
             </td>
             <td align="right" style="font-size:11px;color:#cbd5e1;white-space:nowrap">
-              Bengaluru, India
+              Belagavi, India
             </td>
           </tr>
         </table>
@@ -252,31 +252,31 @@ function sendBookingEmail($toEmail, $userName, $vehicleName, $start, $end, $tota
 
         $mail->setFrom($fromAddr, $fromName);
         $mail->addAddress($toEmail, $userName);
-        $mail->addReplyTo('support@driveease.in', 'DriveEase Support');
+        $mail->addReplyTo('support@easedrive.in', 'EaseDrive Support');
 
         // ── Anti-spam headers ────────────────────────────────────────────
         $mail->addCustomHeader('X-Priority', '3');
-        $mail->addCustomHeader('X-Mailer', 'DriveEase Mailer');
+        $mail->addCustomHeader('X-Mailer', 'EaseDrive Mailer');
         $mail->addCustomHeader('Precedence', 'bulk');
-        $mail->MessageID = '<booking-' . time() . '-' . rand(1000,9999) . '@driveease.in>';
+        $mail->MessageID = '<booking-' . time() . '-' . rand(1000,9999) . '@easedrive.in>';
 
         // ── Anti-spam headers ────────────────────────────────────────────
         $mail->addCustomHeader('X-Priority', '3');
-        $mail->addCustomHeader('X-Mailer', 'DriveEase Mailer 1.0');
+        $mail->addCustomHeader('X-Mailer', 'EaseDrive Mailer 1.0');
         $mail->addCustomHeader('Precedence', 'bulk');
-        $mail->addCustomHeader('List-Unsubscribe', '<mailto:support@driveease.in?subject=Unsubscribe>');
-        $mail->MessageID = '<booking-' . time() . '-' . rand(1000,9999) . '@driveease.in>';
+        $mail->addCustomHeader('List-Unsubscribe', '<mailto:support@easedrive.in?subject=Unsubscribe>');
+        $mail->MessageID = '<booking-' . time() . '-' . rand(1000,9999) . '@easedrive.in>';
 
-        $mail->Subject  = 'Booking Confirmed: ' . $vehicleClean . ' — DriveEase';
+        $mail->Subject  = 'Booking Confirmed: ' . $vehicleClean . ' — EaseDrive';
         $mail->Body     = $htmlBody;
         $mail->AltBody  = $plainText;                         // plain-text fallback
 
         $mail->send();
-        error_log('[DriveEase Mail] Sent to: ' . $toEmail);
+        error_log('[EaseDrive Mail] Sent to: ' . $toEmail);
         return true;
 
     } catch (Exception $e) {
-        error_log('[DriveEase Mail] FAILED to ' . $toEmail . ' — ' . $mail->ErrorInfo);
+        error_log('[EaseDrive Mail] FAILED to ' . $toEmail . ' — ' . $mail->ErrorInfo);
         return false;
     }
 }

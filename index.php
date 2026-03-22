@@ -8,7 +8,7 @@ include 'includes/track_visit.php';
 <html lang="en">
 <head>
   <?php include 'includes/head.php'; ?>
-  <title>DriveEase — Premium Vehicle Rental</title>
+  <title>EaseDrive — Premium Vehicle Rental</title>
   <style>
     .hero-particles .particle { position:absolute; border-radius:50%; opacity:0; animation:particleFloat linear infinite; }
     @keyframes particleFloat { 0%{transform:translateY(100vh);opacity:0} 10%{opacity:.5} 90%{opacity:.2} 100%{transform:translateY(-80px) translateX(20px);opacity:0} }
@@ -54,7 +54,7 @@ include 'includes/track_visit.php';
   <div class="wrap">
     <div class="section-head">
       <p class="label-sm" style="color:var(--orange);margin-bottom:10px">Simple Process</p>
-      <h2>How <span class="text-gradient">DriveEase</span> Works</h2>
+      <h2>How <span class="text-gradient">EaseDrive</span> Works</h2>
       <p>Rent a vehicle in under 2 minutes. No paperwork, no hassle.</p>
     </div>
     <div class="row g-4">
@@ -121,7 +121,7 @@ include 'includes/track_visit.php';
 <section class="section" style="background:var(--bg-1)">
   <div class="wrap">
     <div class="section-head">
-      <p class="label-sm" style="color:var(--cyan);margin-bottom:10px">Why DriveEase</p>
+      <p class="label-sm" style="color:var(--cyan);margin-bottom:10px">Why EaseDrive</p>
       <h2>Built Around <span class="text-gradient-wild">Your Journey</span></h2>
       <p>Every feature designed to make your rental experience seamless</p>
     </div>

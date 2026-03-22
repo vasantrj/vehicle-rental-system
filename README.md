@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚗 DriveEase — Vehicle Rental Management System
+# 🚗 EaseDrive — Vehicle Rental Management System
 
 ### A full-stack PHP + MySQL web application for managing vehicle rentals with Razorpay payments, email notifications, PDF invoices, and a real-time admin analytics dashboard.
 
@@ -17,7 +17,7 @@
 
 ---
 
-![DriveEase Banner](assets/images/hero-car.jpg)
+![EaseDrive Banner](assets/images/hero-car.jpg)
 
 </div>
 
@@ -42,7 +42,7 @@
 
 ## 🎯 About the Project
 
-**DriveEase** is a complete vehicle rental management system built from scratch using core PHP and MySQL — no heavy frameworks. It features a public-facing booking portal, a full admin control panel, Razorpay payment integration, automated email confirmations via PHPMailer, printable PDF invoices, and a private analytics dashboard with real-time visitor tracking.
+**EaseDrive** is a complete vehicle rental management system built from scratch using core PHP and MySQL — no heavy frameworks. It features a public-facing booking portal, a full admin control panel, Razorpay payment integration, automated email confirmations via PHPMailer, printable PDF invoices, and a private analytics dashboard with real-time visitor tracking.
 
 > Built as an academic mini project demonstrating full-stack web development skills including database design, payment gateway integration, session management, and responsive UI design.
 
@@ -287,10 +287,10 @@ Private visitor counter built into the database — no third-party service.
 
 <div align="center">
 
-**Avadhut Joshi**
+**Vasant Joshi**
 
-[![GitHub](https://img.shields.io/badge/GitHub-avadhutjoshi-181717?logo=github)](https://github.com/avadhutjoshi)
-[![Email](https://img.shields.io/badge/Email-avadhutjoshi2580@gmail.com-EA4335?logo=gmail)](mailto:avadhutjoshi2580@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-avadhutjoshi-181717?logo=github)](https://github.com/vasantrj)
+[![Email](https://img.shields.io/badge/Email-vasantjoshi2580@gmail.com-EA4335?logo=gmail)](mailto:vasantjoshi2580@gmail.com)
 
 </div>
 

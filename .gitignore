@@ -25,3 +25,6 @@ desktop.ini
 
 # Node (if ever used)
 /node_modules/
+
+# Vertual Env for Deployment
+/Venv_for_deploy/

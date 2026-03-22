@@ -11,12 +11,27 @@ if (!isset($_ENV['DB_HOST'])) {
     }
 }
 
-$host = $_ENV['DB_HOST']     ?? 'localhost';
-$user = $_ENV['DB_USERNAME']  ?? 'root';
-$pass = $_ENV['DB_PASSWORD']  ?? '';
-$db   = $_ENV['DB_DATABASE']  ?? 'vehicle_rental';
+// Detect environment
+$isLocal = ($_SERVER['SERVER_NAME'] === 'localhost');
+
+// LOCAL ENV
+if ($isLocal) {
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $db   = "vehicle_rental";
+} 
+// LIVE (InfinityFree)
+else {
+    $host = "sql301.infinityfree.com";
+    $user = "if0_41439231";
+    $pass = "zNHi6cAGLnVh";
+    $db   = "if0_41439231_vehicle_rental";
+}
 
 $conn = mysqli_connect($host, $user, $pass, $db);
+
 if (!$conn) {
     die("Database connection failed: " . mysqli_connect_error());
 }
+?>

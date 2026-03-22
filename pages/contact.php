@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 ?>
 <!DOCTYPE html><html lang="en"><head>
 <?php include '../includes/head.php'; ?>
-<title>Contact — DriveEase</title>
+<title>Contact — EaseDrive</title>
 </head><body>
 <div class="dash-bg" aria-hidden="true">
   <div class="dash-bg-blob1"></div><div class="dash-bg-blob2"></div>
@@ -48,7 +48,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
           <div style="display:flex;flex-direction:column;gap:24px">
             <?php
             $contacts = [
-              ['📧','Email','support@driveease.in','mailto:support@driveease.in'],
+              ['📧','Email','support@easedrive.in','mailto:support@easedrive.in'],
               ['📞','Phone','+91 89512 34347','tel:+91 89512 34347'],
               ['📍','Address','Belagavi, Karnataka, India',null],
               ['⏰','Support Hours','24/7 — Always Available',null],
@@ -91,11 +91,11 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             <div class="row g-3 mb-3">
               <div class="col-md-6">
                 <label class="input-label">Your Name <span style="color:var(--red)">*</span></label>
-                <input type="text" name="name" class="input-field" placeholder="Rahul Sharma" required value="<?= htmlspecialchars($_POST['name']??'') ?>">
+                <input type="text" name="name" class="input-field" placeholder="Your Name" required value="<?= htmlspecialchars($_POST['name']??'') ?>">
               </div>
               <div class="col-md-6">
                 <label class="input-label">Email Address <span style="color:var(--red)">*</span></label>
-                <input type="email" name="email" class="input-field" placeholder="you@example.com" required value="<?= htmlspecialchars($_POST['email']??'') ?>">
+                <input type="email" name="email" class="input-field" placeholder="you@gmail.com" required value="<?= htmlspecialchars($_POST['email']??'') ?>">
               </div>
             </div>
             <div class="mb-3">

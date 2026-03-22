@@ -27,14 +27,14 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 ?>
 <!DOCTYPE html><html lang="en"><head>
 <?php include '../includes/head.php'; ?>
-<title>Sign In — DriveEase</title>
+<title>Sign In — EaseDrive</title>
 </head><body>
 <div class="auth-wrap">
   <div class="auth-box">
     <div class="auth-card">
       <div class="auth-logo">
         <div class="auth-logo-icon">🚗</div>
-        <div style="font-family:var(--ff-head);font-size:1rem;font-weight:700;color:var(--t2)">DriveEase</div>
+        <div style="font-family:var(--ff-head);font-size:1rem;font-weight:700;color:var(--t2)">EaseDrive</div>
       </div>
       <h2>Welcome Back</h2>
       <p class="auth-sub">Sign in to your account to continue</p>
@@ -42,7 +42,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       <form method="POST">
         <div class="input-group">
           <label class="input-label">Email Address</label>
-          <input type="email" name="email" class="input-field" placeholder="you@example.com" value="<?= htmlspecialchars($_POST['email']??'') ?>" required autofocus>
+          <input type="email" name="email" class="input-field" placeholder="you@gmail.com" value="<?= htmlspecialchars($_POST['email']??'') ?>" required autofocus>
         </div>
         <div class="input-group">
           <label class="input-label">Password</label>

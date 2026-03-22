@@ -39,7 +39,7 @@ $vehicle = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM vehicles WHERE i
 <!DOCTYPE html><html lang="en"><head>
 <?php include '../includes/head.php'; ?>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<title>Payment — DriveEase</title>
+<title>Payment — EaseDrive</title>
 </head><body>
 <!-- BG -->
 <div class="dash-bg" aria-hidden="true"><div class="dash-bg-blob1"></div><div class="dash-bg-blob2"></div><div class="dash-bg-blob3"></div><div class="dash-bg-grid"></div></div>

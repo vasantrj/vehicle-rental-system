@@ -14,7 +14,7 @@ $days=(new DateTime($d['start_date']))->diff(new DateTime($d['end_date']))->days
 ?>
 <!DOCTYPE html><html lang="en"><head>
 <?php include '../includes/head.php'; ?>
-<title>Invoice INV-<?= str_pad($bid,5,'0',STR_PAD_LEFT) ?> — DriveEase</title>
+<title>Invoice INV-<?= str_pad($bid,5,'0',STR_PAD_LEFT) ?> — EaseDrive</title>
 <style>
 @media print{
   /* ── Page setup: A4, single page ── */
@@ -137,7 +137,7 @@ $days=(new DateTime($d['start_date']))->diff(new DateTime($d['end_date']))->days
   <!-- Animated top border via CSS ::before -->
   <div class="invoice-header">
     <div class="invoice-company">
-      <h2>🚗 DriveEase</h2>
+      <h2>🚗 EaseDrive</h2>
       <p>
         support@driveease.in<br>
         +91 89512 34347<br>

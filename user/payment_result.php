@@ -15,7 +15,7 @@ if($booking_id){
 ?>
 <!DOCTYPE html><html lang="en"><head>
 <?php include '../includes/head.php'; ?>
-<title><?= $status==='success'?'✅ Booking Confirmed':'❌ Payment Failed' ?> — DriveEase</title>
+<title><?= $status==='success'?'✅ Booking Confirmed':'❌ Payment Failed' ?> — EaseDrive</title>
 </head><body>
 <div class="dash-bg" aria-hidden="true">
   <div class="dash-bg-blob1"></div><div class="dash-bg-blob2"></div>

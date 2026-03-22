@@ -21,14 +21,14 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 ?>
 <!DOCTYPE html><html lang="en"><head>
 <?php include '../includes/head.php'; ?>
-<title>Register — DriveEase</title>
+<title>Register — EaseDrive</title>
 </head><body>
 <div class="auth-wrap">
   <div class="auth-box">
     <div class="auth-card">
       <div class="auth-logo">
         <div class="auth-logo-icon">🚗</div>
-        <div style="font-family:var(--ff-head);font-size:1rem;font-weight:700;color:var(--t2)">DriveEase</div>
+        <div style="font-family:var(--ff-head);font-size:1rem;font-weight:700;color:var(--t2)">EaseDrive</div>
       </div>
       <h2>Create Account</h2>
       <p class="auth-sub">Join thousands of happy renters today</p>
@@ -41,7 +41,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         </div>
         <div class="input-group">
           <label class="input-label">Email Address</label>
-          <input type="email" name="email" class="input-field" placeholder="you@example.com" required>
+          <input type="email" name="email" class="input-field" placeholder="you@gmail.com" required>
         </div>
         <div class="input-group">
           <label class="input-label">Phone (optional)</label>

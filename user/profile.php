@@ -36,7 +36,7 @@ $initials=strtoupper(substr($user['name'],0,1));
 ?>
 <!DOCTYPE html><html lang="en"><head>
 <?php include '../includes/head.php'; ?>
-<title>Profile — DriveEase</title>
+<title>Profile — EaseDrive</title>
 </head><body>
 <!-- BG -->
 <div class="dash-bg" aria-hidden="true"><div class="dash-bg-blob1"></div><div class="dash-bg-blob2"></div><div class="dash-bg-blob3"></div><div class="dash-bg-grid"></div></div>
